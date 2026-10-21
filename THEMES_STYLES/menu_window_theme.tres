@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dgjygm0qm8hcv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p37eq"]
+bg_color = Color(0.15294118, 0.2, 0.22352941, 1)
+border_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
+corner_radius_top_left = 85
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+expand_margin_top = 30.0
+
+[resource]
+Window/colors/title_color = Color(0.9061235, 0.7582704, 0.20297897, 1)
+Window/font_sizes/title_font_size = 27
+Window/fonts/title_font = null
+Window/styles/embedded_border = SubResource("StyleBoxFlat_p37eq")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0ii3gkghsmcx"]
+
+[ext_resource type="Script" uid="uid://bv7gobvfcrg8a" path="res://SCENES/UI/tool_selector.gd" id="1_w6qpt"]
+[ext_resource type="Theme" uid="uid://dgjygm0qm8hcv" path="res://THEMES_STYLES/menu_window_theme.tres" id="2_4sn7j"]
+[ext_resource type="Script" uid="uid://c8vp8l03taxnn" path="res://THEMES_STYLES/window.gd" id="2_bx11f"]
+[ext_resource type="Texture2D" uid="uid://ba8xdevjkpees" path="res://IMAGES/RECTS/9patchrect.png" id="3_bx11f"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("MyWindow", "My9Rect", "MyGrid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_w6qpt")
+MyWindow = NodePath("Window")
+My9Rect = NodePath("Window/NinePatchRect")
+MyGrid = NodePath("Window/NinePatchRect/GridContainer")
+closeOnCloseAll = false
+
+[node name="Window" type="Window" parent="."]
+transparent_bg = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(300, 200)
+theme = ExtResource("2_4sn7j")
+script = ExtResource("2_bx11f")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("3_bx11f")
+region_rect = Rect2(776.6266, 1290.5125, 254.69568, 254.69568)
+patch_margin_left = 56
+patch_margin_top = 83
+patch_margin_right = 65
+patch_margin_bottom = 67
+
+[node name="GridContainer" type="GridContainer" parent="Window/NinePatchRect"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 90.0
+offset_right = 130.0
+offset_bottom = 130.0
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 100
+
+[connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cfv66tflmxx52"]
+
+[ext_resource type="Script" uid="uid://cs1vygn6bgjtl" path="res://SCRIPTS/launcher.gd" id="1_3jlw8"]
+[ext_resource type="PackedScene" uid="uid://d0o4hjmrof4kn" path="res://SCENES/godfinger/godfinger.tscn" id="2_s11cr"]
+
+[node name="LAUNCHER" type="Node" unique_id=343238752]
+script = ExtResource("1_3jlw8")
+
+[node name="GODFINGER" parent="." unique_id=464582492 instance=ExtResource("2_s11cr")]

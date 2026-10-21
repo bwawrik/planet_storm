@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cvb5em0vxn2dx"]
+
+[ext_resource type="Script" uid="uid://u4yyqmrg4cpp" path="res://SCRIPTS/WidnowManager/WindowManager.gd" id="1_mhrj6"]
+[ext_resource type="PackedScene" uid="uid://dnkx65q7vrhx8" path="res://SCRIPTS/WidnowManager/game_window.tscn" id="1_rpp0t"]
+
+[node name="Menu" type="Node2D" unique_id=1074694264]
+
+[node name="UI" type="Control" parent="." unique_id=1032773935]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI" unique_id=499734573]
+script = ExtResource("1_mhrj6")
+
+[node name="GameWindow" parent="UI/CanvasLayer" unique_id=1418974456 instance=ExtResource("1_rpp0t")]
+offset_left = -620.0
+offset_top = -380.0
+offset_right = -620.0
+offset_bottom = -380.0

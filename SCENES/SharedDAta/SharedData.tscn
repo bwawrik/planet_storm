@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c7t307oscm4od"]
+
+[ext_resource type="Script" uid="uid://b1plftpo7q4jm" path="res://SCENES/SharedData/SharedData.gd" id="1_j8n5u"]
+[ext_resource type="AudioStream" uid="uid://dyfqmwjkvw0rt" path="res://SOUND/TRACKS/iiif-service_mbrsrs_mbrsjukebox_ucsb_victor.mp3" id="2_cutm4"]
+
+[node name="SharedData" type="Node2D" unique_id=1907357370]
+script = ExtResource("1_j8n5u")
+musicTracks = Array[AudioStream]([ExtResource("2_cutm4")])

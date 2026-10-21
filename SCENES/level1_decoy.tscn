@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c872es5mrfmdq"]
+
+[ext_resource type="Texture2D" uid="uid://vsuue1akuo51" path="res://IMAGES/coffee_logo_new_big.png" id="1_ihhlf"]
+
+[node name="Level1Decoy" type="Node2D" unique_id=697879263]
+
+[node name="CoffeeLogoNewBig" type="Sprite2D" parent="." unique_id=1661495553]
+position = Vector2(6.1035156e-05, -1.9999695)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ihhlf")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2004812199]
