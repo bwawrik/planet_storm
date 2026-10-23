@@ -16,3 +16,7 @@ signal connect_windows()
 #signal player_damaged(damage: float)
 #signal item_collected(item_name: String)
 #signal punch_started()
+
+
+signal UpdatePlanets(planetData: Array[PLANET])
+signal StarSelected(planetData: Array[PLANET])

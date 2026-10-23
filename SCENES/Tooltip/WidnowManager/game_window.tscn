@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dnkx65q7vrhx8"]
+[gd_scene format=3 uid="uid://dnkx65q7vrhx9"]
 
 [ext_resource type="Script" uid="uid://b13vv0o81cri" path="res://SCRIPTS/WidnowManager/GameWindow.gd" id="1_v2q64"]
 [ext_resource type="Theme" uid="uid://byac7kjn284du" path="res://SCRIPTS/WidnowManager/window_theme_1.tres" id="2_wt5n4"]

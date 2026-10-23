@@ -1,5 +1,4 @@
 
-# res://resources/planet_stats.gd
 extends Resource
 class_name PlanetStats
 
@@ -420,6 +419,7 @@ func apply_to(material: ShaderMaterial) -> void:
 	if material == null:
 		return
 	# Planet
+	material.set_shader_parameter("planet_type", int(type))
 	material.set_shader_parameter("planet_seed", planet_seed)
 	material.set_shader_parameter("randomize_params", randomize_params)
 	material.set_shader_parameter("enforce_type_rules", enforce_type_rules)

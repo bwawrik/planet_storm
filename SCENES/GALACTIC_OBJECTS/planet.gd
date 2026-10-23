@@ -21,8 +21,11 @@ func _ready() -> void:
 	# Call with positional arguments (no named assignment in GDScript calls).
 	# Second arg = use_seed
 	stats.randomize_planet(PlanetStats.PlanetType.RANDOM, true)
-
+	
 	# 3) Push all shader parameters into this material.
+	ApplyToMaterial()
+
+func ApplyToMaterial():
 	stats.apply_to(material as ShaderMaterial)
 
 

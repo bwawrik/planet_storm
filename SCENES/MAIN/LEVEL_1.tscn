@@ -6,10 +6,36 @@
 [ext_resource type="Texture2D" uid="uid://dh7mj1m3mad5b" path="res://IMAGES/box.png" id="3_4d7sh"]
 [ext_resource type="Shader" uid="uid://c4m11fb4fe41y" path="res://SHADERS/star.gdshader" id="3_epypp"]
 [ext_resource type="Shader" uid="uid://bo3soh83mausn" path="res://SHADERS/portal.gdshader" id="5_d21ai"]
-[ext_resource type="Script" uid="uid://co5jppfom7jcv" path="res://SCENES/MAIN/selector.gd" id="5_rj586"]
+[ext_resource type="Script" uid="uid://co5jppfom7jcv" path="res://SCENES/MAIN/STARS_NAVIGATION.gd" id="5_rj586"]
 [ext_resource type="Shader" uid="uid://dl0orombvcya1" path="res://SHADERS/rei.gdshader" id="6_rj586"]
+[ext_resource type="PackedScene" uid="uid://jqccrv0mn1fb" path="res://SCENES/GALACTIC_OBJECTS/star.tscn" id="6_wqmwc"]
 [ext_resource type="Script" uid="uid://1xnq738ndsg" path="res://SCENES/MAIN/rotate.gd" id="7_4d7sh"]
+[ext_resource type="Script" uid="uid://bn1kk8h0hlivn" path="res://SCENES/MAIN/planet_viewer.gd" id="10_fgwm1"]
 [ext_resource type="Script" uid="uid://bfnygxsrjquog" path="res://SCENES/GALACTIC_OBJECTS/planet.gd" id="10_ir8iy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7u3vh"]
+shader = ExtResource("5_d21ai")
+shader_parameter/radius = 0.5
+shader_parameter/black_core = 0.44999998807907
+shader_parameter/inner_ring = 0.05000000074506
+shader_parameter/edge_softness = 0.10000000149012
+shader_parameter/rotation_speed = 0.22
+shader_parameter/turbulence_speed = 0.32
+shader_parameter/swirl_strength = 10.0
+shader_parameter/turbulence_scale = 27.4350012556625
+shader_parameter/turbulence_amount = 0.62
+shader_parameter/center_color = Color(0.001, 0.005, 0.012, 1)
+shader_parameter/deep_blue = Color(0.005, 0.055, 0.12, 1)
+shader_parameter/blue = Color(3.5878344, 0.5207482, 1.5750201, 1)
+shader_parameter/bright_blue = Color(0.37585726, 0.0033692548, 0.11698825, 1)
+shader_parameter/cyan = Color(0.25, 0.94, 1, 1)
+shader_parameter/glow_strength = 1.65
+shader_parameter/cloud_brightness = 1.15
+shader_parameter/star_density = 0.12
+shader_parameter/star_brightness = 1.6
+shader_parameter/pulse_strength = 0.055
+shader_parameter/pulse_speed = 1.15
+shader_parameter/activity = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vwjxr"]
 
@@ -41,21 +67,6 @@ shader_parameter/color_out_b = Color(1, 0.25, 0, 1)
 shader_parameter/color_in_a = Color(1, 1, 0, 1)
 shader_parameter/color_in_b = Color(1, 1, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhhay"]
-shader = ExtResource("3_epypp")
-shader_parameter/core_color = Vector4(1, 0.97, 0.85, 1)
-shader_parameter/corona_color = Vector4(1, 0.85, 0.35, 1)
-shader_parameter/core_radius = 0.22
-shader_parameter/corona_radius = 0.555
-shader_parameter/corona_softness = 1.0
-shader_parameter/flare_strength = 0.65
-shader_parameter/flare_sharpness = 14.0
-shader_parameter/flare_decay = 10.0
-shader_parameter/twinkle_amount = 0.08
-shader_parameter/twinkle_speed = 0.6
-shader_parameter/noise_scale = 1.0
-shader_parameter/use_texture_mask = true
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8qlh5"]
 shader = ExtResource("5_d21ai")
 shader_parameter/radius = 0.5
@@ -79,6 +90,21 @@ shader_parameter/star_brightness = 0.0
 shader_parameter/pulse_strength = 0.055
 shader_parameter/pulse_speed = 1.15
 shader_parameter/activity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhhay"]
+shader = ExtResource("3_epypp")
+shader_parameter/core_color = Vector4(1, 0.97, 0.85, 1)
+shader_parameter/corona_color = Vector4(1, 0.85, 0.35, 1)
+shader_parameter/core_radius = 0.22
+shader_parameter/corona_radius = 0.555
+shader_parameter/corona_softness = 1.0
+shader_parameter/flare_strength = 0.65
+shader_parameter/flare_sharpness = 14.0
+shader_parameter/flare_decay = 10.0
+shader_parameter/twinkle_amount = 0.08
+shader_parameter/twinkle_speed = 0.6
+shader_parameter/noise_scale = 1.0
+shader_parameter/use_texture_mask = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir8iy"]
 shader = ExtResource("1_0e48y")
@@ -1521,50 +1547,49 @@ shader_parameter/life_dot_color = Color(0.12, 0.08, 0.05, 1)
 
 [node name="Node2D" type="Node2D" unique_id=45411278]
 
+[node name="highlight_Box" type="Sprite2D" parent="." unique_id=1212889866]
+position = Vector2(-1200, -800)
+rotation = -0.83287036
+scale = Vector2(0.30000004, 0.3)
+texture = ExtResource("3_4d7sh")
+
+[node name="selected_Box" type="Sprite2D" parent="." unique_id=1027365914]
+visible = false
+modulate = Color(1, 0.13725491, 0.20392157, 1)
+material = SubResource("ShaderMaterial_7u3vh")
+position = Vector2(-1310.215, -800)
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("3_4d7sh")
+
 [node name="galaxy" type="Sprite2D" parent="." unique_id=1924473578]
 material = SubResource("ShaderMaterial_jugen")
-position = Vector2(-241, -169)
-rotation = 172.70091
+position = Vector2(0, -250)
+rotation = 531.63196
 scale = Vector2(11.202694, 9.87457)
 texture = ExtResource("3_4d7sh")
 script = ExtResource("7_4d7sh")
 rotation_speed = 2.0
 
-[node name="STARS" type="Node2D" parent="galaxy" unique_id=335958003 node_paths=PackedStringArray("box")]
+[node name="STARS" type="Node2D" parent="galaxy" unique_id=335958003 node_paths=PackedStringArray("box", "selected_box", "planetViewRoot")]
 rotation = -0.9112722
 scale = Vector2(0.09621737, 0.09468887)
 skew = 0.12484038
 script = ExtResource("5_rj586")
-box = NodePath("../../Box")
+box = NodePath("../../highlight_Box")
+selected_box = NodePath("../../selected_Box")
+planetViewRoot = NodePath("../../Planet_viewer")
 
-[node name="Star_1" type="Sprite2D" parent="galaxy/STARS" unique_id=683605062]
-material = SubResource("ShaderMaterial_qhhay")
-position = Vector2(-680.99994, -208.99998)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_epypp")
+[node name="STAR" parent="galaxy/STARS" unique_id=758858662 instance=ExtResource("6_wqmwc")]
+position = Vector2(-571.69257, -346.3994)
 
-[node name="Star_2" type="Sprite2D" parent="galaxy/STARS" unique_id=1597467691]
-material = SubResource("ShaderMaterial_qhhay")
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_epypp")
+[node name="STAR2" parent="galaxy/STARS" unique_id=911917751 instance=ExtResource("6_wqmwc")]
+position = Vector2(417.0345, -174.56009)
 
-[node name="Star_3" type="Sprite2D" parent="galaxy/STARS" unique_id=838391383]
-material = SubResource("ShaderMaterial_qhhay")
-position = Vector2(229.99997, -303.0001)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_epypp")
+[node name="STAR3" parent="galaxy/STARS" unique_id=33774873 instance=ExtResource("6_wqmwc")]
+position = Vector2(-559.0729, 186.734)
 
-[node name="Star_4" type="Sprite2D" parent="galaxy/STARS" unique_id=705478381]
-material = SubResource("ShaderMaterial_qhhay")
-position = Vector2(-603.4, 74.5999)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_epypp")
-
-[node name="Star_5" type="Sprite2D" parent="galaxy/STARS" unique_id=184426731]
-material = SubResource("ShaderMaterial_qhhay")
-position = Vector2(-292.40005, -303.40005)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_epypp")
+[node name="STAR4" parent="galaxy/STARS" unique_id=255670966 instance=ExtResource("6_wqmwc")]
+position = Vector2(54.431274, -575.42175)
 
 [node name="portal2" type="Sprite2D" parent="galaxy/STARS" unique_id=1490883409]
 material = SubResource("ShaderMaterial_8qlh5")
@@ -1576,57 +1601,67 @@ texture = ExtResource("2_epypp")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1476078609]
 zoom = Vector2(0.315, 0.315)
 
-[node name="Box" type="Sprite2D" parent="." unique_id=1212889866]
-position = Vector2(-1069, 32)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_4d7sh")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367505466]
 
-[node name="Star_6" type="Sprite2D" parent="." unique_id=946456820]
+[node name="visuals" type="Control" parent="." unique_id=1083755091]
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Star_6" type="Sprite2D" parent="visuals" unique_id=946456820]
 material = SubResource("ShaderMaterial_qhhay")
-position = Vector2(1928, 967.99994)
+position = Vector2(2003, -1151)
 scale = Vector2(7.87, 7.87)
 texture = ExtResource("2_epypp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367505466]
-
-[node name="Control" type="Control" parent="." unique_id=500240794]
+[node name="Planet_viewer" type="Control" parent="." unique_id=500240794 node_paths=PackedStringArray("planet_visual")]
 layout_mode = 3
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("10_fgwm1")
+planet_visual = [NodePath("Planet_1"), NodePath("Planet_2"), NodePath("Planet_3"), NodePath("Planet_4"), NodePath("Planet_5")]
 
-[node name="Planet_1" type="Sprite2D" parent="Control" unique_id=1654027167]
+[node name="Planet_1" type="Sprite2D" parent="Planet_viewer" unique_id=1654027167]
 material = SubResource("ShaderMaterial_ir8iy")
-position = Vector2(-1500, 700)
+position = Vector2(-1300, 1000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_epypp")
 script = ExtResource("10_ir8iy")
 
-[node name="Planet_2" type="Sprite2D" parent="Control" unique_id=707803659]
+[node name="Planet_2" type="Sprite2D" parent="Planet_viewer" unique_id=707803659]
 material = SubResource("ShaderMaterial_hqns4")
-position = Vector2(-1000, 700)
+position = Vector2(-650, 1000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_epypp")
 script = ExtResource("10_ir8iy")
 
-[node name="Planet_3" type="Sprite2D" parent="Control" unique_id=267380115]
+[node name="Planet_3" type="Sprite2D" parent="Planet_viewer" unique_id=267380115]
 material = SubResource("ShaderMaterial_x0ka3")
-position = Vector2(-500, 700)
+position = Vector2(0, 1000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_epypp")
 script = ExtResource("10_ir8iy")
 
-[node name="Planet_4" type="Sprite2D" parent="Control" unique_id=652140538]
+[node name="Planet_4" type="Sprite2D" parent="Planet_viewer" unique_id=652140538]
 material = SubResource("ShaderMaterial_0h7mo")
-position = Vector2(0, 700)
+position = Vector2(650, 1000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_epypp")
 script = ExtResource("10_ir8iy")
 
-[node name="Planet_5" type="Sprite2D" parent="Control" unique_id=778092659]
+[node name="Planet_5" type="Sprite2D" parent="Planet_viewer" unique_id=778092659]
 material = SubResource("ShaderMaterial_d2bti")
-position = Vector2(500, 700)
+position = Vector2(1300, 1000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_epypp")
 script = ExtResource("10_ir8iy")
