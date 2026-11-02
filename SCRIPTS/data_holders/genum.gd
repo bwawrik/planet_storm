@@ -5,3 +5,14 @@ class_name Genum
 enum BusID { MASTER, OST, SFX, UI, AMBIENT}
 enum Season { SPRING,  SUMMER, FALL, WINTER }
 enum item_type {RESOURCE, EQUIPMENT, WEAPON, JUNK}
+
+enum PlanetType {
+	TERRAN,
+	GAS_GIANT,
+	OCEAN_WORLD,
+	ICE_PLUTOID,
+	BARREN,
+	GREENHOUSE,
+	ICE_GIANT,
+	RANDOM
+}

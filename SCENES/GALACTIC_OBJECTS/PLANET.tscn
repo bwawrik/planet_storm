@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://b442w7roesfsx"]
+
+[ext_resource type="Shader" uid="uid://wl4wimfimp2c" path="res://SHADERS/planet.gdshader" id="1_83ou7"]
+[ext_resource type="Texture2D" uid="uid://badwygyu8hflj" path="res://IMAGES/circle.png" id="2_isafr"]
+[ext_resource type="Script" uid="uid://bfnygxsrjquog" path="res://SCENES/GALACTIC_OBJECTS/planet.gd" id="3_01nvr"]
+[ext_resource type="Texture2D" uid="uid://dh7mj1m3mad5b" path="res://IMAGES/box.png" id="4_ln7n8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir8iy"]
+shader = ExtResource("1_83ou7")
+shader_parameter/use_instance_data = false
+shader_parameter/flip_uv_y = false
+shader_parameter/align_light_to_world = true
+shader_parameter/planet_type = 0
+shader_parameter/planet_seed = 7.0
+shader_parameter/randomize_params = false
+shader_parameter/enforce_type_rules = true
+shader_parameter/temperature = 0.5
+shader_parameter/ocean_coverage = 0.55
+shader_parameter/atmosphere_density = 0.6
+shader_parameter/life_level = 0.6
+shader_parameter/planet_radius = 0.8
+shader_parameter/hue_variation = 0.12
+shader_parameter/sensor_level = 0.999999977648
+shader_parameter/light_angle_deg = 35.0
+shader_parameter/light_facing = 0.35
+shader_parameter/sun_color = Color(1, 0.96, 0.88, 1)
+shader_parameter/ambient_light = 0.025
+shader_parameter/exposure = 1.0
+shader_parameter/time_scale = 1.0
+shader_parameter/rotation_speed = 0.06
+shader_parameter/axial_tilt_deg = 12.0
+shader_parameter/tilt_variation_deg = 30.0
+shader_parameter/cloud_wind = 0.02
+shader_parameter/hurricane_spin = 0.6
+shader_parameter/gas_flow_speed = 0.6
+shader_parameter/terrain_scale = 2.2
+shader_parameter/terrain_octaves = 5
+shader_parameter/mountain_amount = 0.6
+shader_parameter/relief = 1.0
+shader_parameter/crater_amount = 0.6
+shader_parameter/lat_gradient = 0.75
+shader_parameter/water_glint = 0.8
+shader_parameter/gas_band_count = 6.0
+shader_parameter/gas_turbulence = 1.0
+shader_parameter/cloud_coverage = 0.55
+shader_parameter/cloud_opacity = 0.9
+shader_parameter/cloud_scale = 2.6
+shader_parameter/cloud_octaves = 5
+shader_parameter/cloud_shadows = 0.5
+shader_parameter/storm_activity = 0.45
+shader_parameter/lightning_activity = 0.5
+shader_parameter/atmo_halo_size = 0.12
+shader_parameter/atmo_halo_strength = 1.0
+shader_parameter/atmo_rim_strength = 1.0
+shader_parameter/atmo_rim_power = 3.0
+shader_parameter/city_density = 0.5
+shader_parameter/tech_level = 0.5
+shader_parameter/city_scale = 3.5
+shader_parameter/city_detail = 48.0
+shader_parameter/city_grid_lines = 90.0
+shader_parameter/city_glow = 1.6
+shader_parameter/city_outline = 0.6
+shader_parameter/city_daytime_visibility = 0.35
+shader_parameter/wildfire_activity = 0.25
+shader_parameter/fire_scale = 5.0
+shader_parameter/life_grid = 70.0
+shader_parameter/life_dot_size = 0.22
+shader_parameter/life_dot_opacity = 0.7
+shader_parameter/life_speed = 0.8
+shader_parameter/life_generation_rate = 0.25
+shader_parameter/sensor_gating = true
+shader_parameter/pixelate_mode = 1
+shader_parameter/pixels_min = 12.0
+shader_parameter/pixels_max = 140.0
+shader_parameter/sensor_curve = 1.0
+shader_parameter/fixed_pixels = 64.0
+shader_parameter/sensor_posterize = true
+shader_parameter/sensor_noise = 0.5
+shader_parameter/sensor_scanlines = 0.4
+shader_parameter/unknown_color = Color(0.35, 0.47, 0.6, 1)
+shader_parameter/auto_lod = true
+shader_parameter/lod_min_pixels = 10.0
+shader_parameter/lod_full_pixels = 180.0
+shader_parameter/ocean_shallow = Color(0.12, 0.45, 0.62, 1)
+shader_parameter/ocean_deep = Color(0.02, 0.1, 0.3, 1)
+shader_parameter/land_low = Color(0.36, 0.3, 0.22, 1)
+shader_parameter/land_high = Color(0.62, 0.56, 0.48, 1)
+shader_parameter/desert_color = Color(0.78, 0.62, 0.38, 1)
+shader_parameter/vegetation_color = Color(0.12, 0.38, 0.14, 1)
+shader_parameter/ice_color = Color(0.9, 0.95, 1, 1)
+shader_parameter/lava_color = Color(1, 0.35, 0.05, 1)
+shader_parameter/gas_color_a = Color(0.86, 0.72, 0.52, 1)
+shader_parameter/gas_color_b = Color(0.62, 0.42, 0.28, 1)
+shader_parameter/gas_color_c = Color(0.94, 0.86, 0.72, 1)
+shader_parameter/gas_spot_color = Color(0.75, 0.32, 0.2, 1)
+shader_parameter/greenhouse_light = Color(0.95, 0.82, 0.55, 1)
+shader_parameter/greenhouse_dark = Color(0.65, 0.42, 0.22, 1)
+shader_parameter/atmosphere_color = Color(0.45, 0.68, 1, 1)
+shader_parameter/twilight_color = Color(1, 0.5, 0.25, 1)
+shader_parameter/cloud_color = Color(1, 1, 1, 1)
+shader_parameter/city_color = Color(1, 0.82, 0.5, 1)
+shader_parameter/city_day_color = Color(0.55, 0.55, 0.58, 1)
+shader_parameter/fire_color = Color(1, 0.4, 0.08, 1)
+shader_parameter/lightning_color = Color(0.75, 0.85, 1, 1)
+shader_parameter/life_dot_color = Color(0.12, 0.08, 0.05, 1)
+
+[node name="Planet" type="Sprite2D" unique_id=203769204 node_paths=PackedStringArray("selectionBox")]
+material = SubResource("ShaderMaterial_ir8iy")
+scale = Vector2(2, 2)
+texture = ExtResource("2_isafr")
+script = ExtResource("3_01nvr")
+selectionBox = NodePath("Box")
+
+[node name="Box" type="Sprite2D" parent="." unique_id=1837550221]
+modulate = Color(0.5263127, 0.4482324, 2.8878452e-07, 1)
+scale = Vector2(1.26, 1.26)
+texture = ExtResource("4_ln7n8")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bwd2c5174qus5"]
+
+[ext_resource type="Texture2D" uid="uid://byb1s4i6xbjfg" path="res://IMAGES/tiles/tt_4.png" id="1_aumo8"]
+
+[node name="tile" type="Node2D" unique_id=1984465482]
+z_as_relative = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=485682211]
+z_as_relative = false
+texture = ExtResource("1_aumo8")

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dofeqowjo5qrh"]
+
+[ext_resource type="Shader" uid="uid://bo3soh83mausn" path="res://SHADERS/portal.gdshader" id="1_65voe"]
+[ext_resource type="Texture2D" uid="uid://badwygyu8hflj" path="res://IMAGES/circle.png" id="2_56hg0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qlh5"]
+shader = ExtResource("1_65voe")
+shader_parameter/radius = 0.5
+shader_parameter/black_core = 0.05000000074506
+shader_parameter/inner_ring = 0.27
+shader_parameter/edge_softness = 0.025
+shader_parameter/rotation_speed = 4.054000430065001
+shader_parameter/turbulence_speed = 0.32
+shader_parameter/swirl_strength = 4.2
+shader_parameter/turbulence_scale = 19.026000856235
+shader_parameter/turbulence_amount = 0.62
+shader_parameter/center_color = Color(0, 0.003921569, 0.011764706, 1)
+shader_parameter/deep_blue = Color(0.005, 0.055, 0.12, 1)
+shader_parameter/blue = Color(0.23688677, 0.4137268, 1, 1)
+shader_parameter/bright_blue = Color(3.2488256e-07, 0.22463441, 0.32607183, 1)
+shader_parameter/cyan = Color(0, 0, 0, 1)
+shader_parameter/glow_strength = 4.28400020349
+shader_parameter/cloud_brightness = 0.9030000428925
+shader_parameter/star_density = 0.12
+shader_parameter/star_brightness = 1.6
+shader_parameter/pulse_strength = 0.0510000024225
+shader_parameter/pulse_speed = 10.0
+shader_parameter/activity = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_65voe"]
+load_path = "res://.godot/imported/light_01.png-2f25ffb477b51d20d15701222673022f.ctex"
+
+[sub_resource type="Gradient" id="Gradient_56hg0"]
+colors = PackedColorArray(0.5676225, 0.7089955, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ebmn"]
+gradient = SubResource("Gradient_56hg0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgn5c"]
+particle_flag_disable_z = true
+radial_velocity_min = -563.53
+radial_velocity_max = 662.99
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.049999997
+color_ramp = SubResource("GradientTexture1D_0ebmn")
+
+[node name="portal2" type="Sprite2D" unique_id=537699753]
+material = SubResource("ShaderMaterial_8qlh5")
+rotation = -3.1316695
+scale = Vector2(0.23870394, 0.25032997)
+texture = ExtResource("2_56hg0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1165370536]
+amount = 100
+texture = SubResource("CompressedTexture2D_65voe")
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_sgn5c")

@@ -22,7 +22,7 @@ var actor: CharacterBody2D
 
 #region Built-Ins
 func _ready() -> void:
-	actor = get_parent()  # This is your Knight, which inherits CharacterBody2D
+	actor = get_parent()  # This is your Character, which inherits CharacterBody2D
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
 	
@@ -32,7 +32,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print("Current state is: ", state.name)
 	state.update(delta)
 
 func _physics_process(delta: float) -> void:

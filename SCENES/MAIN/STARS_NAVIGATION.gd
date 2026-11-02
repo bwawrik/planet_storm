@@ -1,6 +1,9 @@
 
 extends Node2D
 
+@onready var starScene = preload("res://SCENES/GALACTIC_OBJECTS/star.tscn")
+
+
 @export var base_size: float = 20.0
 @export var pulse_percent: float = 0.30         # ±30% pulsation
 @export var pulse_frequency: float = 1.0        # Hz
@@ -12,15 +15,17 @@ extends Node2D
 
 var t := 0.0
 var closest_node: Sprite2D = null
+var selected_node: Sprite2D = null
 
 func _ready() -> void:
+	## create a star when starting the game
+	SignalBus.connect("StartGame", CreateFirstStar)
+	## when player clicks a star, select it
 	SignalBus.connect("StarSelected", StarSelected)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if selected_box != null:
-			selected_box.visible = false
-
+		SignalBus.UnselectAll.emit()
 
 func _process(delta: float) -> void:
 	t += delta
@@ -49,11 +54,21 @@ func _draw() -> void:
 	var half := size * 0.5
 
 	var center := closest_node.global_position
-	
 	box.position = center
 	box.scale = Vector2(scale, scale)
+	
+	if selected_box.visible:
+		center = selected_node.global_position
+		selected_box.position = center
 	
 func StarSelected(planets: Array[PLANET]):
 	SignalBus.emit_signal("UpdatePlanets", planets)
 	selected_box.visible = true
-	selected_box.position = closest_node.global_position
+	selected_node = closest_node
+
+func CreateFirstStar():
+	print ("creating first star")
+	var s = starScene.instantiate()
+	s._initUniform(2, PlanetStats.PlanetType.TERRAN)
+	s.position = Vector2.from_angle(randf_range(0.0, TAU)) * sqrt(randf()) * 600.0
+	add_child(s)

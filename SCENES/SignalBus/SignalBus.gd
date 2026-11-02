@@ -17,6 +17,10 @@ signal connect_windows()
 #signal item_collected(item_name: String)
 #signal punch_started()
 
+signal StartGame()
 
 signal UpdatePlanets(planetData: Array[PLANET])
 signal StarSelected(planetData: Array[PLANET])
+
+# general navigation
+signal UnselectAll()

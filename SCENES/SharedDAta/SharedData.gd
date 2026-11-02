@@ -13,6 +13,8 @@ extends Node
 @export var UINode: CanvasLayer
 @export var myCam:Camera2D
 @export var effectNode: Node
+@export var MAP: Node2D
+@export var noiseLayers: Array[Noise]
 #endregion
 
 #region sound
@@ -25,6 +27,7 @@ extends Node
 #region scenes
 @onready var sfx_scene = preload("res://SCENES/SoundEffect.tscn")
 @export var effects: Array[PackedScene]
+@export var units: Array[UnitData]
 #endregion
 
 #region Inventory
@@ -70,7 +73,6 @@ func _ready() -> void:
 	#SignalBus.connect("narrative", _narrativeLine)
 	## make audiostreamplayers for immdiate playback
 	_InitianteSoundPool()
-
 
 func _process(_deltaTime: float) -> void:
 		

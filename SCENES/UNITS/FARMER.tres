@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://kxoddg05c1j7"]
+
+[ext_resource type="Script" uid="uid://b0n66wj0gv2b6" path="res://SCRIPTS/data_holders/class_UnitData.gd" id="1_7eaw8"]
+[ext_resource type="PackedScene" uid="uid://dnc1qrp78eucn" path="res://SCENES/UNITS/FARMER/FARMER.tscn" id="1_8ymci"]
+
+[resource]
+script = ExtResource("1_7eaw8")
+id = &"FARMER"
+display_name = "FARMER"
+scene = ExtResource("1_8ymci")
+cost = 100
+metadata/_custom_type_script = "uid://b0n66wj0gv2b6"

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://boklljyg2on3n"]
+
+[ext_resource type="Script" uid="uid://glo0kvu0lja5" path="res://IMAGES/tiles/tile_grass.gd" id="1_8byu5"]
+[ext_resource type="Texture2D" uid="uid://ciph08h7qla5a" path="res://IMAGES/tiles/tt_0.png" id="1_72ruv"]
+[ext_resource type="Texture2D" uid="uid://0egj82k76tef" path="res://IMAGES/tiles/tt_5.png" id="3_reatm"]
+[ext_resource type="Texture2D" uid="uid://dskwskb1jp2ls" path="res://IMAGES/tiles/tt_10.png" id="4_welea"]
+[ext_resource type="Texture2D" uid="uid://bf117cy04pxb4" path="res://IMAGES/tiles/tt_15.png" id="5_jv4s8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_reatm"]
+load_path = "res://.godot/imported/tt_0.png-8fbc28cb438a5a1ed9847285e83d0ab1.ctex"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_reatm"]
+vertices = PackedVector2Array(63.132813, -9.3828125, -0.0390625, 32.992188, -62.96875, -8.4375, 0.9921875, -45.429688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1, -57, 82, -10, 0, 45, -82, -9)])
+
+[node name="tile" type="Node2D" unique_id=1984465482 node_paths=PackedStringArray("tileSprite")]
+z_as_relative = false
+script = ExtResource("1_8byu5")
+tileImageVariants = Array[Texture]([ExtResource("1_72ruv"), ExtResource("3_reatm"), ExtResource("4_welea"), ExtResource("5_jv4s8")])
+tileSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=485682211]
+z_as_relative = false
+texture = SubResource("CompressedTexture2D_reatm")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=46591572]
+navigation_polygon = SubResource("NavigationPolygon_reatm")

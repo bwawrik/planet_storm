@@ -14,6 +14,7 @@ func enter(_previous_state_path: StringName, _data := {}) -> void:
 	pass
 
 func _ready() -> void:
+	print("Current state is: ", name)
 	#connect singlas here
 	#SignalBus.narration_closed.connect(_done)
 	pass

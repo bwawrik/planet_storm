@@ -1,0 +1,181 @@
+[gd_scene format=4 uid="uid://d1aaj6v3jr421"]
+
+[ext_resource type="Script" uid="uid://hp51rxq53b8f" path="res://SCENES/VOLK3/MapManager.gd" id="2_4a5wk"]
+[ext_resource type="Texture2D" uid="uid://c76hm7vh8b30j" path="res://IMAGES/tiles/grass.png" id="3_ywwq7"]
+[ext_resource type="Texture2D" uid="uid://dbv267pctxi1e" path="res://IMAGES/tiles/gravel.png" id="4_px7i4"]
+[ext_resource type="Texture2D" uid="uid://y8pxkvembbud" path="res://IMAGES/tiles/soil.png" id="5_qs0cl"]
+[ext_resource type="Texture2D" uid="uid://c5kjorxmgu7a" path="res://IMAGES/trees/conifer.png" id="6_poiho"]
+[ext_resource type="PackedScene" uid="uid://if0gaiccn4tg" path="res://SCENES/VOLK3/spawnportal.tscn" id="6_qs0cl"]
+[ext_resource type="Texture2D" uid="uid://qdtajbukira1" path="res://IMAGES/tiles/lava.png" id="6_u6vwh"]
+[ext_resource type="Shader" uid="uid://dhamtvspedj3j" path="res://SHADERS/water_windwalker.gdshader" id="6_uefkr"]
+[ext_resource type="Shader" uid="uid://dl7fqtvflortb" path="res://SHADERS/wind_sway.gdshader" id="6_wrg6q"]
+[ext_resource type="Texture2D" uid="uid://ctcnfnwgjulwl" path="res://IMAGES/tiles/water.png" id="7_r3l7v"]
+[ext_resource type="Script" uid="uid://c7rlqg5yyrg7r" path="res://SCENES/VOLK3/CamManager.gd" id="7_s13g6"]
+[ext_resource type="Texture2D" uid="uid://buowyj6ll53ei" path="res://IMAGES/trees/pinetree.png" id="7_wrg6q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qs0cl"]
+texture = ExtResource("3_ywwq7")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s13g6"]
+texture = ExtResource("4_px7i4")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6vwh"]
+texture = ExtResource("5_qs0cl")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_poiho"]
+texture = ExtResource("6_u6vwh")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cymg6"]
+shader = ExtResource("6_uefkr")
+shader_parameter/WATER_COL = Color(0.022798695, 0.22041732, 0.31004333, 1)
+shader_parameter/WATER2_COL = Color(0.010899883, 0.26648542, 0.40337968, 1)
+shader_parameter/FOAM_COL = Color(0.12343971, 0.46440196, 0.45927292, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(1, 3)
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyvl4"]
+texture = ExtResource("7_r3l7v")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_cymg6")
+1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_cymg6")
+2:0/0 = 0
+2:0/0/material = SubResource("ShaderMaterial_cymg6")
+3:0/0 = 0
+3:0/0/material = SubResource("ShaderMaterial_cymg6")
+
+[sub_resource type="TileSet" id="TileSet_sgn5c"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(128, 78)
+sources/0 = SubResource("TileSetAtlasSource_qs0cl")
+sources/1 = SubResource("TileSetAtlasSource_s13g6")
+sources/2 = SubResource("TileSetAtlasSource_u6vwh")
+sources/3 = SubResource("TileSetAtlasSource_poiho")
+sources/4 = SubResource("TileSetAtlasSource_vyvl4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_poiho"]
+shader = ExtResource("6_wrg6q")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.210000009975
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8k7iv"]
+texture = ExtResource("6_poiho")
+texture_region_size = Vector2i(140, 140)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 64)
+0:0/0/material = SubResource("ShaderMaterial_poiho")
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 64)
+1:0/0/material = SubResource("ShaderMaterial_poiho")
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 64)
+2:0/0/material = SubResource("ShaderMaterial_poiho")
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 64)
+3:0/0/material = SubResource("ShaderMaterial_poiho")
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 64)
+4:0/0/material = SubResource("ShaderMaterial_poiho")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8k7iv"]
+shader = ExtResource("6_wrg6q")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.01
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uefkr"]
+texture = ExtResource("7_wrg6q")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_8k7iv")
+1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_8k7iv")
+2:0/0 = 0
+2:0/0/material = SubResource("ShaderMaterial_8k7iv")
+3:0/0 = 0
+3:0/0/material = SubResource("ShaderMaterial_8k7iv")
+4:0/0 = 0
+4:0/0/material = SubResource("ShaderMaterial_8k7iv")
+
+[sub_resource type="TileSet" id="TileSet_14x4p"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(128, 78)
+sources/0 = SubResource("TileSetAtlasSource_8k7iv")
+sources/1 = SubResource("TileSetAtlasSource_uefkr")
+
+[node name="VolkMain" type="Node2D" unique_id=547400960]
+y_sort_enabled = true
+
+[node name="MAP" type="Node2D" parent="." unique_id=1579809073 node_paths=PackedStringArray("terrainlayer", "objectlayer", "specialTilesLayer", "unitNode")]
+y_sort_enabled = true
+script = ExtResource("2_4a5wk")
+terrainlayer = NodePath("terrainLayer")
+objectlayer = NodePath("objectLayer")
+specialTilesLayer = NodePath("specialTileLayer")
+unitNode = NodePath("UnitNode")
+
+[node name="terrainLayer" type="TileMapLayer" parent="MAP" unique_id=246877699]
+y_sort_enabled = true
+scale = Vector2(1, 0.7)
+tile_map_data = PackedByteArray("AAAAAAAAAwAAAAAAAAAAAP//AwAAAAAAAAAAAAEABAABAAAAAAD//wAAAAAAAAAAAAD/////AwAAAAAAAAACAAAABAABAAAAAAACAAEABAABAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAD//wEAAAAAAAAAAAABAAAAAwAAAAAAAAABAAEAAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_sgn5c")
+
+[node name="objectLayer" type="TileMapLayer" parent="MAP" unique_id=2014226513]
+z_index = 10
+y_sort_enabled = true
+scale = Vector2(1, 0.7)
+tile_set = SubResource("TileSet_14x4p")
+
+[node name="specialTileLayer" type="TileMapLayer" parent="MAP" unique_id=2097568435]
+y_sort_enabled = true
+
+[node name="spawnportal" parent="MAP" unique_id=710617073 instance=ExtResource("6_qs0cl")]
+z_index = 10
+y_sort_enabled = true
+position = Vector2(64, 0)
+
+[node name="UnitNode" type="Node2D" parent="MAP" unique_id=668589725]
+z_index = 10
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1532358784]
+script = ExtResource("7_s13g6")

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://if0gaiccn4tg"]
+
+[ext_resource type="Texture2D" uid="uid://btm0qx2taciq1" path="res://SCENES/GALACTIC_OBJECTS/portal_sheet.png" id="1_ueayl"]
+[ext_resource type="PackedScene" uid="uid://dofeqowjo5qrh" path="res://SCENES/GALACTIC_OBJECTS/portal.tscn" id="2_ogojn"]
+[ext_resource type="Script" uid="uid://bqud3miwd8hxm" path="res://SCENES/VOLK3/spawnportal.gd" id="2_wsl8t"]
+[ext_resource type="Texture2D" uid="uid://ck4yfgotrlxsm" path="res://IMAGES/BARS/bp5.png" id="3_xw70i"]
+[ext_resource type="Texture2D" uid="uid://carps7a0pj3lt" path="res://IMAGES/BARS/bp3.png" id="4_xw70i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poiho"]
+atlas = ExtResource("1_ueayl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgn5c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poiho")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="spawnportal" type="AnimatedSprite2D" unique_id=710617073 node_paths=PackedStringArray("portalVisual", "progressBar")]
+scale = Vector2(0.695, 0.695)
+sprite_frames = SubResource("SpriteFrames_sgn5c")
+animation = &"new_animation"
+frame_progress = 0.47790027
+script = ExtResource("2_wsl8t")
+portalVisual = NodePath("portal2")
+progressBar = NodePath("TextureProgressBar")
+
+[node name="portal2" parent="." unique_id=537699753 instance=ExtResource("2_ogojn")]
+z_index = 100
+y_sort_enabled = true
+position = Vector2(0, -12.94964)
+scale = Vector2(0.193, 0.193)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1882109731]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.48201
+offset_top = -143.13669
+offset_right = 208.518
+offset_bottom = -111.13669
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture_under = ExtResource("3_xw70i")
+texture_progress = ExtResource("4_xw70i")
+
+[node name="Control" type="Control" parent="." unique_id=1190741730]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.57555
+offset_top = -89.20863
+offset_right = 82.01439
+offset_bottom = 79.1367
+tooltip_text = "A magical portal. I wonder what happens if I touch it ?"
