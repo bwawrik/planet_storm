@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvb5em0vxn2dx"]
 
-[ext_resource type="Script" uid="uid://u4yyqmrg4cpp" path="res://SCRIPTS/WidnowManager/WindowManager.gd" id="1_mhrj6"]
+[ext_resource type="Script" uid="uid://u4yyqmrg4cpp" path="res://SCRIPTS/WindowManager/WindowManager.gd" id="1_mhrj6"]
 [ext_resource type="PackedScene" uid="uid://bdple5k3r4ely" path="res://SCENES/WINDOWS/MainMenu.tscn" id="2_mhrj6"]
 
 [node name="Menu" type="Node2D" unique_id=1074694264]

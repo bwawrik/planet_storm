@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://5adihnhrufax"]
+
+[ext_resource type="Script" uid="uid://cuh2lhd7o1aa8" path="res://SCRIPTS/WindowManager/circle_menu/texture_rect.gd" id="1_dvnq2"]
+[ext_resource type="StyleBox" uid="uid://cs6k3jfcegajy" path="res://SCRIPTS/WindowManager/circle_menu/unselected_stylebox.tres" id="2_n83n7"]
+[ext_resource type="Texture2D" uid="uid://cshbowwijjhqt" path="res://IMAGES/SPRITESHEETS/wards.png" id="2_x8ong"]
+[ext_resource type="StyleBox" uid="uid://cer7ldn64x7ly" path="res://SCRIPTS/WindowManager/circle_menu/selected_stylebox.tres" id="3_aafif"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyqeu"]
+atlas = ExtResource("2_x8ong")
+region = Rect2(255, 126, 133.14429, 130.5227)
+
+[node name="Control" type="Panel" unique_id=1546167314]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 2
+theme_override_styles/panel = ExtResource("2_n83n7")
+script = ExtResource("1_dvnq2")
+unselctedStyleBox = ExtResource("2_n83n7")
+selectedStyleBox = ExtResource("3_aafif")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1734695110]
+custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(100, 112)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_yyqeu")

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://m4voxkpv1kfk"]
+
+[ext_resource type="Script" uid="uid://dtsi46e7dwqhg" path="res://SCENES/EFFECTS/totem.gd" id="1_s0pam"]
+[ext_resource type="Texture2D" uid="uid://den8p8xt8rvtx" path="res://IMAGES/KENNYS_PARTICLES/fire_01.png" id="2_8us40"]
+[ext_resource type="Texture2D" uid="uid://c184bfuhw723g" path="res://IMAGES/INVENTORY_ITEMS/BASSALT.png" id="3_87ad0"]
+
+[sub_resource type="Gradient" id="Gradient_r8fpj"]
+colors = PackedColorArray(0.61847484, 0.18481395, 0.15531552, 1, 0, 0, 0, 0.3764706)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3iend"]
+gradient = SubResource("Gradient_r8fpj")
+
+[sub_resource type="Curve" id="Curve_vbfx1"]
+_data = [Vector2(0, 0.28571433), 0.0, 0.0, 0, 0, Vector2(0.44827586, 0.96153855), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0ebmn"]
+curve = SubResource("Curve_vbfx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgn5c"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -200, 0)
+scale_min = 0.0
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_0ebmn")
+color_ramp = SubResource("GradientTexture1D_3iend")
+turbulence_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgn5c"]
+atlas = ExtResource("3_87ad0")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgn5c"]
+radius = 259.62473
+
+[node name="Node2D" type="Node2D" unique_id=1076216099]
+script = ExtResource("1_s0pam")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1404845718]
+z_index = 30
+y_sort_enabled = true
+position = Vector2(-5, -65)
+amount = 30
+texture = ExtResource("2_8us40")
+lifetime = 2.0399999999999996
+process_material = SubResource("ParticleProcessMaterial_sgn5c")
+
+[node name="totem_sprite" type="Sprite2D" parent="." unique_id=1600672097]
+z_index = 30
+y_sort_enabled = true
+position = Vector2(0, -33)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_sgn5c")
+
+[node name="totem_area" type="Area2D" parent="." unique_id=737311588]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="totem_area" unique_id=7738061]
+shape = SubResource("CircleShape2D_sgn5c")

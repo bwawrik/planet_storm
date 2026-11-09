@@ -1,12 +1,17 @@
+class_name MapManager
 extends Node2D
 
 @export var terrainlayer: TileMapLayer
 @export var objectlayer: TileMapLayer
 @export var specialTilesLayer: TileMapLayer
 @export var unitNode : Node2D
+@export var effectNode: Node2D
 
 var unitById: Dictionary = {}
 
+const CARDINAL_OFFSETS: Array[Vector2i] = [
+	Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1),
+]
 const NEIGHBOR_OFFSETS: Array[Vector2i] = [
 	Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1),
 	Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1),
@@ -14,7 +19,8 @@ const NEIGHBOR_OFFSETS: Array[Vector2i] = [
 
 # Values are the TileSet source ids.
 enum Terrain { GRASS = 0, LAVA = 3, WATER = 4 }
-enum Obj { CONIFER, PINETREE= 0 }
+enum TreeObj { CONIFER = 0, PINETREE = 1, OAKTREE = 2 }
+const TREE_OBJECT_IDS: Array[int] = [TreeObj.CONIFER, TreeObj.PINETREE, TreeObj.OAKTREE]
 
 const TERRAIN_PASSABLE := {
 	Terrain.GRASS: true,
@@ -56,10 +62,10 @@ func InitMap (n:int) -> void:
 
 	# Pass order is priority: later passes may overwrite earlier ones.
 	var terrain: Dictionary = {} # Vector2i -> Terrain
-	var objects: Dictionary = {} # Vector2i -> Obj
+	var objects: Dictionary = {} # Vector2i -> TreeObj
 	_GenerateTerrain(terrain, n)
 	_StampTerrain(terrain, Vector2i.ZERO, SPAWN_RADIUS, Terrain.LAVA)
-	_ScatterObjects(terrain, objects, Obj.CONIFER, TREE_NOISE_LAYER, [Terrain.GRASS], TREE_CLEAR_RADIUS)
+	_ScatterObjects(terrain, objects, TreeObj.CONIFER, TREE_NOISE_LAYER, [Terrain.GRASS], TREE_CLEAR_RADIUS)
 	_ApplyToLayers(terrain, objects)
 
 
@@ -79,7 +85,7 @@ func _StampTerrain (terrain: Dictionary, center: Vector2i, radius: int, type: Te
 
 
 # Places `obj` where noise > 0, on allowed terrain, and outside `clear_radius` of the origin.
-func _ScatterObjects (terrain: Dictionary, objects: Dictionary, obj: Obj, noise_layer: int, allowed_on: Array, clear_radius: float) -> void:
+func _ScatterObjects (terrain: Dictionary, objects: Dictionary, obj: TreeObj, noise_layer: int, allowed_on: Array, clear_radius: float) -> void:
 	for pos in terrain:
 		if not allowed_on.has(terrain[pos]):
 			continue
@@ -122,6 +128,9 @@ func RemoveTile (pos: Vector2i) -> void:
 		myAstar.remove_point(tileIds[pos])
 		tileIds.erase(pos)
 
+func RemoveTree(pos: Vector2i) -> void:
+	objectlayer.erase_cell(pos)
+	
 
 # Connects pos to its 8 neighbors. Diagonals are only linked when both
 # adjacent orthogonal tiles exist, so units don't cut through corners.
@@ -148,9 +157,77 @@ func GetTileType (pos: Vector2i) -> int:
 	return terrainlayer.get_cell_source_id(pos)
 
 
+# Returns tree cells within a Euclidean tile radius of center.
+func FindTreesWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
+	var found: Array[Vector2i] = []
+	if distance < 0:
+		return found
+
+	var max_distance_squared := distance * distance
+	for x in range(center.x - distance, center.x + distance + 1):
+		for y in range(center.y - distance, center.y + distance + 1):
+			var cell := Vector2i(x, y)
+			var offset := cell - center
+			if offset.x * offset.x + offset.y * offset.y > max_distance_squared:
+				continue
+			if TREE_OBJECT_IDS.has(objectlayer.get_cell_source_id(cell)):
+				found.append(cell)
+	return found
+
+
+func HasTree(pos: Vector2i) -> bool:
+	return TREE_OBJECT_IDS.has(objectlayer.get_cell_source_id(pos))
+
+
+# Walkable tiles within a Euclidean tile radius of center, excluding center.
+func FindWalkableWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
+	var found: Array[Vector2i] = []
+	for cell in _CellsWithin(center, distance):
+		if cell != center and tileIds.has(cell):
+			found.append(cell)
+	return found
+
+
+# Walkable tiles with no tree on them or on any of their N/S/E/W neighbors.
+func FindClearSpotsWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
+	var found: Array[Vector2i] = []
+	for cell in FindWalkableWithin(center, distance):
+		if _IsClearSpot(cell):
+			found.append(cell)
+	return found
+
+
+func _IsClearSpot(pos: Vector2i) -> bool:
+	if HasTree(pos):
+		return false
+	for off in CARDINAL_OFFSETS:
+		if HasTree(pos + off):
+			return false
+	return true
+
+
+func _CellsWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	var max_distance_squared := distance * distance
+	for x in range(center.x - distance, center.x + distance + 1):
+		for y in range(center.y - distance, center.y + distance + 1):
+			var offset := Vector2i(x, y) - center
+			if offset.x * offset.x + offset.y * offset.y <= max_distance_squared:
+				cells.append(Vector2i(x, y))
+	return cells
+
+
 func SpawnUnit(id: StringName, tile: Vector2i) -> Node2D:
 	var unit = unitById[id].scene.instantiate()
-	unit.position = terrainlayer.map_to_local(tile)
+	var tile_global := terrainlayer.to_global(terrainlayer.map_to_local(tile))
+	unit.position = unitNode.to_local(tile_global)
 	 
 	unitNode.add_child(unit)
 	return unit
+
+func HasSelectedUnits() -> bool:
+	var units = $UnitNode.get_children()
+	for u in units:
+		if u.selected and u.selected ==true:
+			return true
+	return false

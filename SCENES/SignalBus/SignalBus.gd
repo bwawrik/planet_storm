@@ -24,3 +24,13 @@ signal StarSelected(planetData: Array[PLANET])
 
 # general navigation
 signal UnselectAll()
+signal selectArea(area: Rect2) # global_position rect
+signal SelectionBoxStarted()
+
+# tile signals
+signal Timber(pos:Vector2i)
+
+#menu signals
+signal ItemSelected(itm: InventoryItem)
+signal CircleMenuVisible(visible: bool, pos: Vector2) # Viewport coordinates.
+signal TextSignal(str: String)

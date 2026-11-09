@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdple5k3r4ely"]
 
 [ext_resource type="Script" uid="uid://duvoto3lnsbmn" path="res://SCENES/WINDOWS/main_menu.gd" id="1_hl3cb"]
-[ext_resource type="Theme" uid="uid://byac7kjn284du" path="res://SCRIPTS/WidnowManager/window_theme_1.tres" id="2_so3xd"]
+[ext_resource type="Theme" uid="uid://byac7kjn284dv" path="res://SCRIPTS/WindowManager/window_theme_1.tres" id="2_so3xd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgn5c"]
 bg_color = Color(0.09411765, 0.25490198, 0.23529412, 1)

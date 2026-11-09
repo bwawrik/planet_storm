@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bparitt4ta7ia"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_1d6r2"]
+[ext_resource type="Texture2D" uid="uid://dot2ykarbs2li" path="res://IMAGES/INVENTORY_ITEMS/ICE.png" id="2_a05g4"]
+
+[resource]
+script = ExtResource("1_1d6r2")
+name = &"ICE"
+description = &"frozen water"
+texture = ExtResource("2_a05g4")
+purchaseable = true
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"

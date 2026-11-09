@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://w5bvsolnu3h3"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_8myov"]
+[ext_resource type="Texture2D" uid="uid://cshbowwijjhqt" path="res://IMAGES/SPRITESHEETS/wards.png" id="2_usyjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usyjs"]
+atlas = ExtResource("2_usyjs")
+region = Rect2(386.933, 257.01328, 110.99173, 128.69241)
+
+[resource]
+script = ExtResource("1_8myov")
+name = &"BUILD HOUSE"
+description = &"BUILD HOUSE"
+texture = SubResource("AtlasTexture_usyjs")
+type = 4
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"

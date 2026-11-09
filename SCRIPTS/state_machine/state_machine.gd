@@ -12,7 +12,7 @@ class_name StateMachine extends Node
 
 #region Variables
 @export var initial_state: State = null
-var actor: CharacterBody2D
+var actor: Node2D
 
 ## Defines the current state by either grabbing the first child or if [property initial_state] is set.
 @onready var state: State = (func _get_initial_state() -> State:

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://oiuod6h4f5xg"]
+
+[ext_resource type="Script" uid="uid://beettivdeq1xh" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.gd" id="1_40ipp"]
+[ext_resource type="PackedScene" uid="uid://5adihnhrufax" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_icon.tscn" id="2_1enjb"]
+[ext_resource type="Resource" uid="uid://b8jb62jna6s1b" path="res://SCENES/INVENTORY_ITEMS/grass.tres" id="3_3e83t"]
+[ext_resource type="Resource" uid="uid://bparitt4ta7ia" path="res://SCENES/INVENTORY_ITEMS/ice.tres" id="4_lp1gq"]
+[ext_resource type="Resource" uid="uid://br0g548elcthd" path="res://SCENES/INVENTORY_ITEMS/pebble.tres" id="5_np5em"]
+[ext_resource type="Resource" uid="uid://c4xhosuv5anny" path="res://SCENES/INVENTORY_ITEMS/sand.tres" id="6_kdm5s"]
+[ext_resource type="Resource" uid="uid://cunlrgpbigip2" path="res://SCENES/INVENTORY_ITEMS/wood.tres" id="7_1wt50"]
+
+[node name="CircleMenuContainer" type="Control" unique_id=1468969673]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_40ipp")
+
+[node name="Control" parent="." unique_id=1546167314 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_top = -150.0
+offset_bottom = -150.0
+item = ExtResource("3_3e83t")
+
+[node name="Control2" parent="." unique_id=1706535060 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = 142.65848
+offset_top = -46.35255
+offset_right = 142.65848
+offset_bottom = -46.35255
+item = ExtResource("4_lp1gq")
+
+[node name="Control3" parent="." unique_id=788857823 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = 88.167786
+offset_top = 121.35255
+offset_right = 88.167786
+offset_bottom = 121.35255
+item = ExtResource("5_np5em")
+
+[node name="Control4" parent="." unique_id=1547744866 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -88.16778
+offset_top = 121.35255
+offset_right = -88.16778
+offset_bottom = 121.35255
+item = ExtResource("6_kdm5s")
+
+[node name="Control5" parent="." unique_id=284063344 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -142.65848
+offset_top = -46.352547
+offset_right = -142.65848
+offset_bottom = -46.352547
+item = ExtResource("7_1wt50")

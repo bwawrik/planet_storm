@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btm0qx2taciq1"
-path="res://.godot/imported/portal_sheet.png-96fb13ec5c32fc6d38cfc1cca9386ebe.ctex"
+uid="uid://b2po10hbwb3i2"
+path="res://.godot/imported/ICICLE.png-2a83d72c4bf58c9bcb1bdc2507b987f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SCENES/GALACTIC_OBJECTS/portal_sheet.png"
-dest_files=["res://.godot/imported/portal_sheet.png-96fb13ec5c32fc6d38cfc1cca9386ebe.ctex"]
+source_file="res://IMAGES/INVENTORY_ITEMS/ICICLE.png"
+dest_files=["res://.godot/imported/ICICLE.png-2a83d72c4bf58c9bcb1bdc2507b987f4.ctex"]
 
 [params]
 

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cldnofu886i2v"]
+
+[ext_resource type="Texture2D" uid="uid://co01pc480ncmw" path="res://IMAGES/SPRITE SHEETS/tools.png" id="1_mlu57"]
+[ext_resource type="Script" uid="uid://o0aqbv822mpm" path="res://SCRIPTS/helpers/CPUparticle_finished.gd" id="2_8ud5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgn5c"]
+atlas = ExtResource("1_mlu57")
+region = Rect2(387, 0, 125, 129.5)
+
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=1776194855]
+z_index = 999
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_sgn5c")
+lifetime = 0.3
+one_shot = true
+speed_scale = 2.0
+angular_velocity_min = 324.0
+angular_velocity_max = 324.0
+script = ExtResource("2_8ud5g")

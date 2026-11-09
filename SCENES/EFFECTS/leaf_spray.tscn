@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://44vgxkevh086"]
+
+[ext_resource type="Texture2D" uid="uid://y2hsux045kuf" path="res://IMAGES/SPRITESHEETS/leaf.png" id="1_2vmbv"]
+[ext_resource type="Script" uid="uid://338xu4j6osok" path="res://SCRIPTS/helpers/CPUparticle_finished.gd" id="2_l7d35"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=1776194855]
+z_index = 999
+y_sort_enabled = true
+scale = Vector2(0.34, 0.34)
+emitting = false
+amount = 40
+texture = ExtResource("1_2vmbv")
+lifetime = 0.6
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+initial_velocity_min = 411.9
+initial_velocity_max = 1000.0
+radial_accel_max = 70.59
+angle_min = -234.6
+angle_max = 391.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+script = ExtResource("2_l7d35")

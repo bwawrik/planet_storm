@@ -39,7 +39,16 @@
 [ext_resource type="AudioStream" uid="uid://sj4ucw48olgb" path="res://SOUND/EFFECTS/weeeaaa.mp3" id="37_830pm"]
 [ext_resource type="AudioStream" uid="uid://brc6ggl0wlrsy" path="res://SOUND/EFFECTS/woodchop.mp3" id="38_edroi"]
 [ext_resource type="Script" uid="uid://b0n66wj0gv2b6" path="res://SCRIPTS/data_holders/class_UnitData.gd" id="39_cymg6"]
+[ext_resource type="AudioStream" uid="uid://cb1ys0qeyn7xy" path="res://SOUND/EFFECTS/chop.mp3" id="39_y67xr"]
+[ext_resource type="PackedScene" uid="uid://44vgxkevh086" path="res://SCENES/EFFECTS/leaf_spray.tscn" id="40_066ne"]
 [ext_resource type="Resource" uid="uid://kxoddg05c1j7" path="res://SCENES/UNITS/FARMER.tres" id="40_y67xr"]
+[ext_resource type="PackedScene" uid="uid://m4voxkpv1kfk" path="res://SCENES/EFFECTS/totem.tscn" id="41_xs25f"]
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="43_t38tn"]
+[ext_resource type="Resource" uid="uid://b8jb62jna6s1b" path="res://SCENES/INVENTORY_ITEMS/grass.tres" id="44_xs25f"]
+[ext_resource type="Resource" uid="uid://bparitt4ta7ia" path="res://SCENES/INVENTORY_ITEMS/ice.tres" id="45_p2m45"]
+[ext_resource type="Resource" uid="uid://br0g548elcthd" path="res://SCENES/INVENTORY_ITEMS/pebble.tres" id="46_xq3wa"]
+[ext_resource type="Resource" uid="uid://c4xhosuv5anny" path="res://SCENES/INVENTORY_ITEMS/sand.tres" id="47_kg6bh"]
+[ext_resource type="Resource" uid="uid://cunlrgpbigip2" path="res://SCENES/INVENTORY_ITEMS/wood.tres" id="48_nkayf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cymg6"]
 frequency = 0.1
@@ -57,5 +66,7 @@ data = PackedByteArray("//u0RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 script = ExtResource("1_j8n5u")
 noiseLayers = Array[Noise]([SubResource("FastNoiseLite_cymg6"), SubResource("FastNoiseLite_y67xr"), SubResource("FastNoiseLite_066ne")])
 musicTracks = Array[AudioStream]([ExtResource("2_2cbhp"), ExtResource("3_fvv6h"), ExtResource("4_cymg6")])
-soundEffects = Array[AudioStream]([ExtResource("5_y67xr"), ExtResource("6_066ne"), ExtResource("7_d37b1"), ExtResource("8_m11wf"), ExtResource("9_13hsj"), ExtResource("10_csm1x"), ExtResource("11_3l8ll"), ExtResource("12_t38tn"), ExtResource("13_xs25f"), ExtResource("14_p2m45"), ExtResource("15_xq3wa"), ExtResource("16_kg6bh"), ExtResource("17_nkayf"), ExtResource("18_bfq5a"), ExtResource("19_8dstx"), ExtResource("20_3bkhv"), ExtResource("21_x6sus"), ExtResource("22_nsvh2"), ExtResource("23_16vwn"), ExtResource("24_b8vle"), ExtResource("25_8mko0"), ExtResource("26_j13cp"), ExtResource("27_atfak"), ExtResource("28_fqm2s"), ExtResource("29_ejexa"), ExtResource("30_y2xf6"), ExtResource("31_fruld"), ExtResource("32_p4kpi"), ExtResource("33_qp50k"), ExtResource("34_2rwrq"), SubResource("AudioStreamMP3_uhdnh"), ExtResource("35_l63bp"), ExtResource("36_3ik6t"), ExtResource("37_830pm"), ExtResource("38_edroi")])
+soundEffects = Array[AudioStream]([ExtResource("5_y67xr"), ExtResource("6_066ne"), ExtResource("7_d37b1"), ExtResource("8_m11wf"), ExtResource("9_13hsj"), ExtResource("10_csm1x"), ExtResource("11_3l8ll"), ExtResource("12_t38tn"), ExtResource("13_xs25f"), ExtResource("14_p2m45"), ExtResource("15_xq3wa"), ExtResource("16_kg6bh"), ExtResource("17_nkayf"), ExtResource("18_bfq5a"), ExtResource("19_8dstx"), ExtResource("20_3bkhv"), ExtResource("21_x6sus"), ExtResource("22_nsvh2"), ExtResource("23_16vwn"), ExtResource("24_b8vle"), ExtResource("25_8mko0"), ExtResource("26_j13cp"), ExtResource("27_atfak"), ExtResource("28_fqm2s"), ExtResource("29_ejexa"), ExtResource("30_y2xf6"), ExtResource("31_fruld"), ExtResource("32_p4kpi"), ExtResource("33_qp50k"), ExtResource("34_2rwrq"), SubResource("AudioStreamMP3_uhdnh"), ExtResource("35_l63bp"), ExtResource("36_3ik6t"), ExtResource("37_830pm"), ExtResource("38_edroi"), ExtResource("39_y67xr")])
+effects = Array[PackedScene]([ExtResource("40_066ne"), ExtResource("41_xs25f")])
 units = Array[ExtResource("39_cymg6")]([ExtResource("40_y67xr")])
+gameItems = Array[ExtResource("43_t38tn")]([ExtResource("44_xs25f"), ExtResource("45_p2m45"), ExtResource("46_xq3wa"), ExtResource("47_kg6bh"), ExtResource("48_nkayf")])

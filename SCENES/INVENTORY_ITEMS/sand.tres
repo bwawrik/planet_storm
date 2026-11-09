@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://c4xhosuv5anny"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_btxfm"]
+[ext_resource type="Texture2D" uid="uid://q2twotyc6t6k" path="res://IMAGES/INVENTORY_ITEMS/SAND.png" id="2_qknui"]
+
+[resource]
+script = ExtResource("1_btxfm")
+name = &"SAND"
+description = &"tiny little grains of rock"
+texture = ExtResource("2_qknui")
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"

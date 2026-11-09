@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnkx65q7vrhya"]
 
-[ext_resource type="Script" uid="uid://b13vv0o81cri" path="res://SCRIPTS/WidnowManager/GameWindow.gd" id="1_v2q64"]
-[ext_resource type="Theme" uid="uid://byac7kjn284du" path="res://SCRIPTS/WidnowManager/window_theme_1.tres" id="2_wt5n4"]
+[ext_resource type="Script" uid="uid://b13vv0o81cri" path="res://SCRIPTS/WindowManager/GameWindow.gd" id="1_v2q64"]
+[ext_resource type="Theme" uid="uid://byac7kjn284dv" path="res://SCRIPTS/WindowManager/window_theme_1.tres" id="2_wt5n4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgn5c"]
 bg_color = Color(0.09411765, 0.25490198, 0.23529412, 1)

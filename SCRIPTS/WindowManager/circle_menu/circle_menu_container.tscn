@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://oiuod6h4f5xg"]
+
+[ext_resource type="Script" uid="uid://beettivdeq1xh" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.gd" id="1_40ipp"]
+[ext_resource type="PackedScene" uid="uid://5adihnhrufax" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_icon.tscn" id="2_1enjb"]
+[ext_resource type="Resource" uid="uid://w5bvsolnu3h3" path="res://SCENES/INVENTORY_ITEMS/ward_build_HOUSE.tres" id="3_3e83t"]
+[ext_resource type="Resource" uid="uid://dqsidbrdni1p2" path="res://SCENES/INVENTORY_ITEMS/ward_build_FARM.tres" id="4_lp1gq"]
+[ext_resource type="Resource" uid="uid://crnjq46ve32ax" path="res://SCENES/INVENTORY_ITEMS/ward_build_TOWER.tres" id="5_3e83t"]
+[ext_resource type="Resource" uid="uid://3lknvq4brc4w" path="res://SCENES/INVENTORY_ITEMS/ward_build_BARACKS.tres" id="6_lp1gq"]
+[ext_resource type="Resource" uid="uid://df6c1fj43vry3" path="res://SCENES/INVENTORY_ITEMS/ward_build_MAGE.tres" id="7_np5em"]
+
+[node name="CircleMenuContainer" type="Control" unique_id=1468969673]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_40ipp")
+
+[node name="Control" parent="." unique_id=1546167314 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -50.000008
+offset_top = -200.0
+offset_right = 49.999992
+offset_bottom = -100.0
+focus_next = NodePath("../Control2")
+focus_previous = NodePath("../Control5")
+item = ExtResource("3_3e83t")
+
+[node name="Control2" parent="." unique_id=1706535060 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = 92.65848
+offset_top = -96.352554
+offset_right = 192.65848
+offset_bottom = 3.6474457
+focus_next = NodePath("../Control3")
+focus_previous = NodePath("../Control")
+item = ExtResource("4_lp1gq")
+
+[node name="Control3" parent="." unique_id=788857823 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = 38.167786
+offset_top = 71.35255
+offset_right = 138.16779
+offset_bottom = 171.35254
+focus_next = NodePath("../Control4")
+focus_previous = NodePath("../Control2")
+item = ExtResource("5_3e83t")
+
+[node name="Control4" parent="." unique_id=1547744866 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -138.16779
+offset_top = 71.35255
+offset_right = -38.167786
+offset_bottom = 171.35254
+focus_next = NodePath("../Control5")
+focus_previous = NodePath("../Control3")
+item = ExtResource("6_lp1gq")
+
+[node name="Control5" parent="." unique_id=284063344 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -192.65848
+offset_top = -96.35255
+offset_right = -92.65848
+offset_bottom = 3.6474533
+focus_next = NodePath("../Control")
+focus_previous = NodePath("../Control4")
+item = ExtResource("7_np5em")

@@ -2,7 +2,7 @@
 class_name State extends Node
 
 ## parent node with decorations
-var actor: CharacterBody2D
+var actor: Node2D
 
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: StringName, data: Dictionary)

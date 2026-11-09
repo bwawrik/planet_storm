@@ -14,6 +14,7 @@ extends Node
 @export var myCam:Camera2D
 @export var effectNode: Node
 @export var MAP: Node2D
+@export var gameManager: GameManger
 @export var noiseLayers: Array[Noise]
 #endregion
 
@@ -31,9 +32,12 @@ extends Node
 #endregion
 
 #region Inventory
+@export var inv: Inventory
+@export var itemCollectionRadius: float = 20
+@export var gameItems: Array[InventoryItem]
+@export var itemRecipes: Array[ItemRecipe]
 
-@export var myInventory: Inventory
-
+#endregion
 #region achievement bus
 var achievement_bus = {}
 var achievements_unlocked = {}
@@ -66,8 +70,8 @@ func _enter_tree():
 		musicManager = MusicManager.new()
 		add_child(musicManager)
 	## add the inventory (if needed)
-	if not myInventory: 
-		myInventory= Inventory.new()
+	if not inv: 
+		inv= Inventory.new()
 
 func _ready() -> void:
 	#SignalBus.connect("narrative", _narrativeLine)
@@ -90,8 +94,8 @@ func _process(_deltaTime: float) -> void:
 	## keyboard override of controller
 	if Input.is_action_pressed("left"): lStick.x = -1
 	if Input.is_action_pressed("right"): lStick.x = 1
-	if Input.is_action_pressed("forward"): lStick.y = -1
-	if Input.is_action_pressed("backward"): lStick.y = 1
+	if Input.is_action_pressed("up"): lStick.y = -1
+	if Input.is_action_pressed("down"): lStick.y = 1
 	
 
 
@@ -147,7 +151,6 @@ func PlaySound(stream, _bus=null, _volume= 0):
 	#set up sound pool on first call
 	if soundPool.size() == 0 : _InitianteSoundPool()
 	var p = _getAvailableSoundPlayer()
-	print (p)
 	p.stream = stream
 	if _bus != null: p.bus = _bus
 	p.volume_db = _volume
@@ -221,3 +224,9 @@ func _screenShake3d(strength: float, duration: float) -> void:
 
 
 #endregion
+
+func GetItemByName(name: String) -> InventoryItem:
+	for i in gameItems:
+		if i.name == name:
+			return i
+	return null

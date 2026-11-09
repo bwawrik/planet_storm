@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c4bietq41tfyj"]
+
+[ext_resource type="Shader" uid="uid://dhspvjxv058gl" path="res://SHADERS/circle_progress.gdshader" id="1_rfhgb"]
+[ext_resource type="Texture2D" uid="uid://badwygyu8hflj" path="res://IMAGES/circle.png" id="2_w0pvf"]
+[ext_resource type="Script" uid="uid://2ka5ous373nd" path="res://IMAGES/BARS/circle_bar.gd" id="3_w0pvf"]
+
+[sub_resource type="Gradient" id="Gradient_c20x4"]
+colors = PackedColorArray(0, 0, 0, 1, 3.657937e-06, 0.71734256, 0.19535565, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v80ui"]
+gradient = SubResource("Gradient_c20x4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pci6"]
+shader = ExtResource("1_rfhgb")
+shader_parameter/value = 0.574000027265
+shader_parameter/segments = 16
+shader_parameter/radius = 0.475
+shader_parameter/hollow_radius = 0.345
+shader_parameter/margin = 0.7150000339625
+shader_parameter/rotation = 0.0
+shader_parameter/progress_rotation = 0.0
+shader_parameter/gradient = SubResource("GradientTexture1D_v80ui")
+shader_parameter/use_value_gradient = true
+
+[node name="Circle" type="Sprite2D" unique_id=961617986]
+material = SubResource("ShaderMaterial_3pci6")
+scale = Vector2(0.475, 0.475)
+texture = ExtResource("2_w0pvf")
+script = ExtResource("3_w0pvf")

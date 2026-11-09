@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://cunlrgpbigip2"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_kj6r7"]
+[ext_resource type="Texture2D" uid="uid://bur852iwxvyuk" path="res://IMAGES/INVENTORY_ITEMS/WOOD.png" id="2_di18v"]
+
+[resource]
+script = ExtResource("1_kj6r7")
+name = &"WOOD"
+description = &"wood for building something"
+texture = ExtResource("2_di18v")
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"

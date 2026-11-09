@@ -15,7 +15,6 @@ func ConnectWindows():
 	if get_child_count() > 0 and get_child(0) is GameWindow:
 		get_child(0).focus_window()
 	
-
 func _input(event: InputEvent) -> void:
 	# Switch windows only on explicit shoulder/page key inputs.
 	# This avoids conflicts when ui_page_* actions are also mapped to directional navigation.

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://csh1bjeghi6qx"]
+
+[ext_resource type="Texture2D" uid="uid://yd6rwpokyxhc" path="res://IMAGES/SPRITE SHEETS/rocks_padded.png" id="1_dqp1p"]
+[ext_resource type="Script" uid="uid://o0aqbv822mpm" path="res://SCRIPTS/helpers/CPUparticle_finished.gd" id="2_jj5kf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgn5c"]
+atlas = ExtResource("1_dqp1p")
+region = Rect2(70, 76, 142, 101)
+
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=1776194855]
+z_index = 999
+emitting = false
+amount = 15
+texture = SubResource("AtlasTexture_sgn5c")
+lifetime = 0.6
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+initial_velocity_min = 411.9
+initial_velocity_max = 1000.0
+scale_amount_min = 0.3
+scale_amount_max = 0.6
+script = ExtResource("2_jj5kf")
