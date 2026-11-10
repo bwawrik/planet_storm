@@ -3,7 +3,8 @@ extends Node2D
 var startPos: Vector2
 var endPos: Vector2
 var lifetime: float = 20
-var item: InventoryItem
+#var item: InventoryItem
+var recipe: ItemRecipe
 
 var tm: float = 0
 

@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://byac7kjn284dv" path="res://SCRIPTS/WindowManager/window_theme_1.tres" id="2_so3xd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgn5c"]
-bg_color = Color(0.09411765, 0.25490198, 0.23529412, 1)
+bg_color = Color(0.10804147, 0.23485923, 0.3388478, 1)
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
@@ -55,7 +55,6 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/TitleBar/HBoxContainer/MarginContainer" unique_id=625473647]
 layout_mode = 2
-text = "test"
 
 [node name="Control" type="Control" parent="PanelContainer/VBoxContainer/TitleBar/HBoxContainer" unique_id=1550765666]
 layout_mode = 2

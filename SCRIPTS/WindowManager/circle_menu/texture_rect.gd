@@ -3,7 +3,8 @@ extends Control
 
 @export var unselctedStyleBox: StyleBoxFlat
 @export var selectedStyleBox: StyleBoxFlat
-@export var item: InventoryItem
+#@export var item: InventoryItem
+@export var itemRecipe: ItemRecipe
 
 @onready var texture_rect: TextureRect = $TextureRect
 
@@ -11,8 +12,10 @@ signal selected(item: InventoryItem)
 
 
 func _ready() -> void:
-	if item:
-		texture_rect.texture = item.texture
+#	if item:
+#		texture_rect.texture = item.texture
+	if itemRecipe.item:
+		texture_rect.texture = itemRecipe.item.texture
 	else:
 		push_error("Circle menu icon has no item assigned: %s" % get_path())
 	focus_entered.connect(_focus)
@@ -29,8 +32,10 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 func _select() -> void:
-	if item:
-		selected.emit(item)
+	#if item:
+	#	selected.emit(item)
+	if itemRecipe.item:
+		selected.emit(itemRecipe.item)
 
 func _focus():
 	add_theme_stylebox_override("panel", selectedStyleBox)

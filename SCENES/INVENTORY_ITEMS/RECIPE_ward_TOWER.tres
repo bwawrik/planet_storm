@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://c1vlyyidorc3r"]
+
+[ext_resource type="Script" uid="uid://dxrwk861cfcrl" path="res://SCRIPTS/inventory_system/inventory_slot.gd" id="1_akd4o"]
+[ext_resource type="Resource" uid="uid://br0g548elcthd" path="res://SCENES/INVENTORY_ITEMS/pebble.tres" id="2_akd4o"]
+[ext_resource type="Resource" uid="uid://crnjq46ve32ax" path="res://SCENES/INVENTORY_ITEMS/ward_build_TOWER.tres" id="3_bdbmj"]
+[ext_resource type="Script" uid="uid://c1pst88f4uaec" path="res://SCRIPTS/inventory_system/recipe_resource.gd" id="4_wk7ge"]
+
+[sub_resource type="Resource" id="Resource_3gv2d"]
+script = ExtResource("1_akd4o")
+item = ExtResource("2_akd4o")
+amount = 2
+metadata/_custom_type_script = "uid://dxrwk861cfcrl"
+
+[resource]
+script = ExtResource("4_wk7ge")
+name = &"HOUSE"
+item = ExtResource("3_bdbmj")
+ingredients = Array[ExtResource("1_akd4o")]([SubResource("Resource_3gv2d")])
+metadata/_custom_type_script = "uid://c1pst88f4uaec"

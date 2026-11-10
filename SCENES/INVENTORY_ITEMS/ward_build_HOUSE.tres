@@ -9,8 +9,8 @@ region = Rect2(386.933, 257.01328, 110.99173, 128.69241)
 
 [resource]
 script = ExtResource("1_8myov")
-name = &"BUILD HOUSE"
-description = &"BUILD HOUSE"
+name = &"HOUSE"
+description = &"HOUSE"
 texture = SubResource("AtlasTexture_usyjs")
 type = 4
 metadata/_custom_type_script = "uid://cvwm0symgb1qo"
