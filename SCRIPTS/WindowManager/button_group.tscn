@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dj0vo2hsudyj8"]
+
+[ext_resource type="Script" uid="uid://dy42fm628v8ik" path="res://SCRIPTS/WindowManager/hbuttongroup.gd" id="1_opqof"]
+[ext_resource type="StyleBox" uid="uid://cs6k3jfcegajy" path="res://SCRIPTS/WindowManager/circle_menu/unselected_stylebox.tres" id="1_ub5kk"]
+[ext_resource type="StyleBox" uid="uid://sdf6cqdv4f15" path="res://SCRIPTS/WindowManager/circle_menu/selected_stylebox_green.tres" id="2_ub5kk"]
+[ext_resource type="ButtonGroup" uid="uid://mpafd41q6lgl" path="res://SCRIPTS/WindowManager/BUTTONGROUP_farmer_behavior.tres" id="3_fa33b"]
+
+[node name="Control" type="Control" unique_id=562336394]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_opqof")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1347606514]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -20.0
+offset_right = 79.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=47399179]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_ub5kk")
+theme_override_styles/pressed = ExtResource("2_ub5kk")
+toggle_mode = true
+button_group = ExtResource("3_fa33b")
+text = "collect"
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=147346847]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_ub5kk")
+theme_override_styles/pressed = ExtResource("2_ub5kk")
+toggle_mode = true
+button_group = ExtResource("3_fa33b")
+text = "build"
+
+[node name="Button3" type="Button" parent="HBoxContainer" unique_id=398073144]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_ub5kk")
+theme_override_styles/pressed = ExtResource("2_ub5kk")
+toggle_mode = true
+button_group = ExtResource("3_fa33b")
+text = "fight"
