@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://dxaegb1hbhim7"]
+
+[ext_resource type="Script" uid="uid://dy42fm628v8ik" path="res://SCRIPTS/WindowManager/hbuttongroup.gd" id="1_gslki"]
+[ext_resource type="StyleBox" uid="uid://cs6k3jfcegajy" path="res://SCRIPTS/WindowManager/circle_menu/unselected_stylebox.tres" id="2_tt8mx"]
+[ext_resource type="StyleBox" uid="uid://sdf6cqdv4f15" path="res://SCRIPTS/WindowManager/circle_menu/selected_stylebox_green.tres" id="3_aujif"]
+[ext_resource type="Texture2D" uid="uid://bs76wu3x72yv1" path="res://IMAGES/SPRITESHEETS/stickfigures.png" id="4_u5ccm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt8mx"]
+bg_color = Color(0.054708876, 0.25042704, 0.22899097, 0.7137255)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8lbov"]
+load_path = "res://.godot/imported/frames.png-36957e1c0c03120a5c59d4996cce196a.ctex"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_xyapt"]
+allow_unpress = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gslki"]
+load_path = "res://.godot/imported/stickfigures.png-6703621e3d0b5f9fe516c779623edc39.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt8mx"]
+atlas = SubResource("CompressedTexture2D_gslki")
+region = Rect2(132.26538, 259.96524, 121.71301, 125.957)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ebmn"]
+atlas = ExtResource("4_u5ccm")
+region = Rect2(264.26538, -2.2539368, 121.71301, 132.0329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa33b"]
+atlas = ExtResource("4_u5ccm")
+region = Rect2(9.569702, 0, 121.71301, 132.0329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kpm0"]
+atlas = ExtResource("4_u5ccm")
+region = Rect2(260.30432, 256.5313, 126.22095, 121.713)
+
+[node name="Control" type="Control" unique_id=562336394]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gslki")
+
+[node name="Panel" type="Panel" parent="." unique_id=375234050]
+layout_mode = 0
+offset_left = -164.0
+offset_top = -44.0
+offset_right = 155.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tt8mx")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=497527054]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -62.0
+offset_right = 170.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_8lbov")
+region_rect = Rect2(372.00012, 30, 279.00037, 289.0001)
+patch_margin_left = 54
+patch_margin_top = 48
+patch_margin_right = 52
+patch_margin_bottom = 58
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1347606514]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -20.0
+offset_right = 96.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="idle_button" type="Button" parent="HBoxContainer" unique_id=2012953413]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_tt8mx")
+theme_override_styles/pressed = ExtResource("3_aujif")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xyapt")
+text = "             "
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/idle_button" unique_id=156929099]
+position = Vector2(29.5, 20)
+scale = Vector2(0.32, 0.32)
+texture = SubResource("AtlasTexture_tt8mx")
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=47399179]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_tt8mx")
+theme_override_styles/pressed = ExtResource("3_aujif")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xyapt")
+text = "             "
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/Button" unique_id=902238436]
+position = Vector2(29.5, 20)
+scale = Vector2(0.32, 0.32)
+texture = SubResource("AtlasTexture_0ebmn")
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=147346847]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_tt8mx")
+theme_override_styles/pressed = ExtResource("3_aujif")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xyapt")
+text = "             "
+
+[node name="Sprite2D2" type="Sprite2D" parent="HBoxContainer/Button2" unique_id=104107349]
+position = Vector2(32, 22)
+scale = Vector2(0.32, 0.32)
+texture = SubResource("AtlasTexture_fa33b")
+
+[node name="Button3" type="Button" parent="HBoxContainer" unique_id=398073144]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_tt8mx")
+theme_override_styles/pressed = ExtResource("3_aujif")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xyapt")
+text = "            "
+
+[node name="Sprite2D3" type="Sprite2D" parent="HBoxContainer/Button3" unique_id=1529783512]
+position = Vector2(33, 23)
+scale = Vector2(0.32, 0.32)
+texture = SubResource("AtlasTexture_2kpm0")

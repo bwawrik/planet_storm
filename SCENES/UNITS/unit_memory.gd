@@ -1,7 +1,7 @@
 # SCRIPTS/data_holders/unit_memory.gd
 class_name UnitMemory extends RefCounted
 
-enum Intent { IDLE, BUILD_HOUSE,CHOP_WOOD, FLEE, DELIVER, PICKUP, WANDER }
+enum Intent { IDLE, CHOP_WOOD, BUILD, FIGHT, WANDER, DELIVER }
 
 var intent: Intent = Intent.IDLE
 var target_position: Vector2i

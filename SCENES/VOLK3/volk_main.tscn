@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://oiuod6h4f5xg" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.tscn" id="18_v80ui"]
 [ext_resource type="Texture2D" uid="uid://btm0qx2taciq1" path="res://IMAGES/SPRITESHEETS/portal_sheet.png" id="20_0emoc"]
 [ext_resource type="Script" uid="uid://dco02vmq4mgpm" path="res://SCENES/VOLK3/emit_if_pressed.gd" id="21_l5yai"]
-[ext_resource type="PackedScene" uid="uid://dj0vo2hsudyj8" path="res://SCRIPTS/WindowManager/button_group.tscn" id="22_24rjf"]
+[ext_resource type="PackedScene" uid="uid://dxaegb1hbhim7" path="res://SCENES/WINDOWS/UnitInfoPanel.tscn" id="22_24rjf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qs0cl"]
 texture = ExtResource("3_ywwq7")
@@ -325,20 +325,23 @@ size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/HomingButton" unique_id=1241161794]
 layout_mode = 0
-offset_left = -10.500008
-offset_top = 46.5
-offset_right = 100.49999
-offset_bottom = 175.5
+offset_left = -90.0
+offset_top = 17.000002
+offset_right = 96.0
+offset_bottom = 219.49997
 scale = Vector2(0.4, 0.4)
 tooltip_text = "FOCUS ON PORTAL"
 texture = SubResource("AtlasTexture_sgn5c")
 script = ExtResource("21_l5yai")
 sigText = "Return To Home"
 
-[node name="Control" parent="UI" unique_id=562336394 instance=ExtResource("22_24rjf")]
-offset_left = -456.0
-offset_top = 43.0
-offset_right = -456.0
-offset_bottom = 43.0
+[node name="UnitActivityPanel" parent="UI" unique_id=1247858227 instance=ExtResource("22_24rjf")]
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -148.0
+grow_vertical = 0
+ButtonGroupName = "UnitActivityPanel"
 
 [connection signal="gui_input" from="UI/MarginContainer/HomingButton/TextureRect" to="UI/MarginContainer/HomingButton/TextureRect" method="_on_gui_input"]

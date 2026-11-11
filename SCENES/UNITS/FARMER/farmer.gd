@@ -3,6 +3,9 @@ extends Node2D
 var memory: UnitMemory
 var cargo: InventorySlot
 
+enum POSSIBLE_ORDERS {IDLE, CHOP_WOOD, BUILD, FIGHT}
+var current_order = POSSIBLE_ORDERS.CHOP_WOOD
+
 @export var thoughts: Label
 @export var mySprite: AnimatedSprite2D
 @export var myCollsionArea: Area2D
@@ -33,6 +36,7 @@ func _process(delta: float) -> void:
 func _on_collision_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		selected = true
+		SignalBus.UnitSelected.emit(current_order)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,10 +57,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		memory.path_index = 0
 		var state_machine := $actor as StateMachine
 		state_machine.state.finished.emit("MoveTo", {})
+		SignalBus.UnselectAll.emit()
 
 func _on_select_area(area: Rect2) -> void:
 	if area.has_point(global_position):
 		selected = true
+		SignalBus.UnitSelected.emit(current_order)
 
 func _unselect():
 	selected = false

@@ -17,8 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://banq4a4hmdxya" path="res://IMAGES/KENNYS_PARTICLES/light_03.png" id="15_c4evb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgn5c"]
-radius = 13.0
-height = 66.69
+radius = 21.0
+height = 78.69
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ttpe"]
 atlas = ExtResource("2_rg7tt")
@@ -474,6 +474,7 @@ tooltip_text = "I'm bored."
 metadata/_edit_use_anchors_ = true
 
 [node name="footsteps" type="AudioStreamPlayer2D" parent="." unique_id=974231758]
+position = Vector2(4, -9)
 stream = ExtResource("13_6ttpe")
 attenuation = 0.31864095
 parameters/looping = false

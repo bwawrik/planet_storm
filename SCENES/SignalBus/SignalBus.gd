@@ -24,6 +24,7 @@ signal StarSelected(planetData: Array[PLANET])
 
 # general navigation
 signal UnselectAll()
+signal UnitSelected(togglePos: int)
 signal selectArea(area: Rect2) # global_position rect
 signal SelectionBoxStarted()
 
@@ -34,3 +35,7 @@ signal Timber(pos:Vector2i)
 signal ItemSelected(itm: InventoryItem)
 signal CircleMenuVisible(visible: bool, pos: Vector2) # Viewport coordinates.
 signal TextSignal(str: String)
+
+## emitted by selection of any HToggleButtonGroup
+signal HToggleButtonGroup(n: int, ButtonGroupName: String)
+##

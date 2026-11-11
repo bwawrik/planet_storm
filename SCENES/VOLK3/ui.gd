@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@onready var unit_activity_panel: HToggleButtonGroup = $UnitActivityPanel
+@onready var map: MapManager = $"../MAP"
+
 const MIN_DRAG_SIZE := 40.0
 
 var _dragging := false
@@ -14,6 +17,9 @@ func _ready() -> void:
 	_box.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_box.draw.connect(_draw_box)
 	add_child(_box)
+
+func _process(_delta: float) -> void:
+	unit_activity_panel.visible = map.HasSelectedUnits()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
