@@ -60,11 +60,18 @@ func _decide_when_carrying(map: MapManager, from: Vector2i) -> void:
 func _decide_when_empty_handed(map: MapManager, from: Vector2i) -> void:
 	match actor.current_order:
 		actor.POSSIBLE_ORDERS.GATHER:
-			var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
-			if _go_to_nearest(map, from, trees, UnitMemory.Intent.CHOP_WOOD): 
-				return
-			else:
-				_wander(map, from)
+			if actor.memory.order.resource_type == Order.ResourceType.NONE:
+				var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
+				var rocks := map.FindRocksWithin(from, TREE_SEARCH_DISTANCE)
+				var tree_path := _nearest_path(map, from, trees)
+				var rock_path := _nearest_path(map, from, rocks)
+				if not rock_path.is_empty() and (tree_path.is_empty() or rock_path.size() < tree_path.size()):
+					_begin_move(rock_path, UnitMemory.Intent.MINE)
+					return
+				if not tree_path.is_empty():
+					_begin_move(tree_path, UnitMemory.Intent.COLLECT)
+					return
+			_wander(map, from)
 		actor.POSSIBLE_ORDERS.BUILD:
 			var totem_pos = map.FindNearestTotem(from)
 			if totem_pos != null:
@@ -85,6 +92,13 @@ func _wander(map: MapManager, from: Vector2i) -> void:
 
 ## Picks the closest (by path length) reachable target and starts moving. Returns false if none.
 func _go_to_nearest(map: MapManager, from: Vector2i, targets: Array[Vector2i], intent: UnitMemory.Intent) -> bool:
+	var best_path := _nearest_path(map, from, targets)
+	if best_path.is_empty(): return false
+	_begin_move(best_path, intent)
+	return true
+
+
+func _nearest_path(map: MapManager, from: Vector2i, targets: Array[Vector2i]) -> PackedVector2Array:
 	var best_path := PackedVector2Array()
 	for target in targets:
 		var path := map.FindPath(from, target)
@@ -94,9 +108,7 @@ func _go_to_nearest(map: MapManager, from: Vector2i, targets: Array[Vector2i], i
 		elif path.size() == best_path.size():
 			if randi_range(0,1) == 1:
 				best_path = path
-	if best_path.is_empty(): return false
-	_begin_move(best_path, intent)
-	return true
+	return best_path
 
 
 func _start_move(map: MapManager, from: Vector2i, target: Vector2i, intent: UnitMemory.Intent) -> bool:

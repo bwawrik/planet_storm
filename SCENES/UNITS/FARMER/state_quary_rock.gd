@@ -13,7 +13,7 @@ func enter(_previous_state_path: StringName, _data := {}) -> void:
 		SignalBus.Timber.connect(Timber)
 
 func update(_delta: float) -> void:
-	if actor.mySprite.play("hammering") and not actor.mySprite.is_playing():
+	if actor.mySprite.animation == "hammering" and not actor.mySprite.is_playing():
 		chopCount += 1
 		SharedData.PlaySound(SharedData.soundEffects[24])
 		if chopCount >= 5:

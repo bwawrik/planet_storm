@@ -39,8 +39,10 @@ func update(delta: float) -> void:
 		return
 
 	match actor.memory.intent:
-		UnitMemory.Intent.CHOP_WOOD:
+		UnitMemory.Intent.COLLECT:
 			finished.emit("ChopTree", {})
+		UnitMemory.Intent.MINE:
+			finished.emit("QuaryRock", {})
 		UnitMemory.Intent.BUILD:
 			finished.emit("Build", {})			
 		_:

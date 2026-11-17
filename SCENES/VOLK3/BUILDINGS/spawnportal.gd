@@ -13,6 +13,7 @@ func _ready() -> void:
 	portalVisual.visible = false
 	progressBar.visible = false
 	$Control.gui_input.connect(_on_control_gui_input)
+	resetProgressBar()
 
 
 func _on_control_gui_input(event: InputEvent) -> void:

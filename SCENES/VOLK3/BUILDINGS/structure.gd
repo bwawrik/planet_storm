@@ -12,7 +12,7 @@ var pos: Vector2i
 func _ready() -> void:
 	n_stages = house.sprite_frames.get_frame_count("default")
 	house.frame = construction_stage
-	var layer = SharedData.MAP.specialTilesLayer
+	var layer = SharedData.MAP.buildingLayer
 	pos = layer.local_to_map(layer.to_local(global_position))
 	SharedData.MAP.RegisterStructure(self)
 

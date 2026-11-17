@@ -100,7 +100,7 @@ func PlaceStructure(pos: Vector2i, _what: ItemRecipe) -> bool:
 		return false
 	match _what.name:
 		"HOUSE":
-			buildingLayer.set_cell(pos, 0, Vector2i.ZERO, 2)
+			buildingLayer.set_cell(pos, 0, Vector2i.ZERO, 2001)
 			# Creates scene tiles now so their Structure registers before the caller looks it up.
 			buildingLayer.update_internals()
 			for ingredient in _what.ingredients:
@@ -223,6 +223,23 @@ func FindTreesWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
 			if offset.x * offset.x + offset.y * offset.y > max_distance_squared:
 				continue
 			if TREE_OBJECT_IDS.has(objectlayer.get_cell_source_id(cell)):
+				found.append(cell)
+	return found
+
+
+func FindRocksWithin(center: Vector2i, distance: int) -> Array[Vector2i]:
+	var found: Array[Vector2i] = []
+	if distance < 0:
+		return found
+
+	var max_distance_squared := distance * distance
+	for x in range(center.x - distance, center.x + distance + 1):
+		for y in range(center.y - distance, center.y + distance + 1):
+			var cell := Vector2i(x, y)
+			var offset := cell - center
+			if offset.x * offset.x + offset.y * offset.y > max_distance_squared:
+				continue
+			if objectlayer.get_cell_source_id(cell) == TerrainObjects.ROCK:
 				found.append(cell)
 	return found
 

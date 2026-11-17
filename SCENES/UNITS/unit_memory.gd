@@ -1,13 +1,14 @@
 # SCRIPTS/data_holders/unit_memory.gd
 class_name UnitMemory extends RefCounted
 
-enum Intent { IDLE, CHOP_WOOD, BUILD, FIGHT, WANDER, DELIVER }
+enum Intent { IDLE, COLLECT, BUILD, FIGHT, WANDER, DELIVER, MINE }
 
 var intent: Intent = Intent.IDLE
 var target_position: Vector2i
 var player_set_target = null
 var path: PackedVector2Array
 var path_index: int = 0
+var order: Order = Order.new()
 
 func set_goal(i: Intent, pos: Vector2, _node: Node2D = null) -> void:
 	intent = i; 
