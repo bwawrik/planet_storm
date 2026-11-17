@@ -57,14 +57,24 @@ func _input(event: InputEvent) -> void:
 			#hide()
 			_Hide()
 
-func _select_item(itm: InventoryItem) -> void:
+#func _select_item(itm: InventoryItem) -> void:
+func _select_item(itm: ItemRecipe) -> void:
+	## check if walkable
+	var terrain: TileMapLayer = SharedData.MAP.terrainlayer
+	var menu_viewport_position := get_global_transform_with_canvas().origin
+	var tile := terrain.local_to_map(terrain.get_global_transform_with_canvas().affine_inverse() * menu_viewport_position)
+	if not SharedData.MAP.IsWalkable(tile):
+		_Hide()
+		return
+
+	## if it is walkable, place totem on the corresponding tile
 	SignalBus.ItemSelected.emit(itm)
 	#hide()
 	_Hide()
 	var vs = SharedData.effects[1].instantiate()
 	var effect_node: Node2D = SharedData.MAP.effectNode
-	var menu_viewport_position := get_global_transform_with_canvas().origin
-	var totem_position := effect_node.get_global_transform_with_canvas().affine_inverse() * menu_viewport_position
+	var snapped_viewport_position := terrain.get_global_transform_with_canvas() * terrain.map_to_local(tile)
+	var totem_position := effect_node.get_global_transform_with_canvas().affine_inverse() * snapped_viewport_position
 	effect_node.add_child(vs)
 	vs.displayTotem(totem_position, itm)
 	

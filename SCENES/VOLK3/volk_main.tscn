@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbv267pctxi1e" path="res://IMAGES/tiles/gravel.png" id="4_px7i4"]
 [ext_resource type="Texture2D" uid="uid://y8pxkvembbud" path="res://IMAGES/tiles/soil.png" id="5_qs0cl"]
 [ext_resource type="Texture2D" uid="uid://c5kjorxmgu7a" path="res://IMAGES/trees/conifer.png" id="6_poiho"]
-[ext_resource type="PackedScene" uid="uid://if0gaiccn4tg" path="res://SCENES/VOLK3/spawnportal.tscn" id="6_qs0cl"]
+[ext_resource type="PackedScene" uid="uid://if0gaiccn4tg" path="res://SCENES/VOLK3/BUILDINGS/spawnportal.tscn" id="6_qs0cl"]
 [ext_resource type="Texture2D" uid="uid://qdtajbukira1" path="res://IMAGES/tiles/lava.png" id="6_u6vwh"]
 [ext_resource type="Shader" uid="uid://dhamtvspedj3j" path="res://SHADERS/water_windwalker.gdshader" id="6_uefkr"]
 [ext_resource type="Shader" uid="uid://dl7fqtvflortb" path="res://SHADERS/wind_sway.gdshader" id="6_wrg6q"]
@@ -14,16 +14,18 @@
 [ext_resource type="Script" uid="uid://c7rlqg5yyrg7r" path="res://SCENES/VOLK3/CamManager.gd" id="7_s13g6"]
 [ext_resource type="Texture2D" uid="uid://buowyj6ll53ei" path="res://IMAGES/trees/pinetree.png" id="7_wrg6q"]
 [ext_resource type="Texture2D" uid="uid://x17rmwr0sw4d" path="res://IMAGES/trees/oaktree.png" id="11_r3l7v"]
-[ext_resource type="Texture2D" uid="uid://lm0p0nw7v3ka" path="res://IMAGES/SPRITESHEETS/house_construction.png" id="12_vyvl4"]
 [ext_resource type="Texture2D" uid="uid://6fn6b1kf0r41" path="res://IMAGES/trees/palmtree.png" id="13_swpr0"]
+[ext_resource type="Texture2D" uid="uid://dnb3fw7aklmve" path="res://IMAGES/SPRITESHEETS/rocks.png" id="14_edvfp"]
 [ext_resource type="PackedScene" uid="uid://c4bietq41tfyj" path="res://IMAGES/BARS/circle.tscn" id="15_0aujf"]
 [ext_resource type="Script" uid="uid://0qshyo0bjxk8" path="res://SCENES/VOLK3/ui.gd" id="15_swpr0"]
+[ext_resource type="PackedScene" uid="uid://cloh5e8e7yfay" path="res://SCENES/VOLK3/BUILDINGS/house.tscn" id="16_edvfp"]
 [ext_resource type="PackedScene" uid="uid://oiuod6h4f5xg" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.tscn" id="18_v80ui"]
 [ext_resource type="Texture2D" uid="uid://btm0qx2taciq1" path="res://IMAGES/SPRITESHEETS/portal_sheet.png" id="20_0emoc"]
 [ext_resource type="Script" uid="uid://dco02vmq4mgpm" path="res://SCENES/VOLK3/emit_if_pressed.gd" id="21_l5yai"]
 [ext_resource type="PackedScene" uid="uid://dxaegb1hbhim7" path="res://SCENES/WINDOWS/UnitInfoPanel.tscn" id="22_24rjf"]
+[ext_resource type="PackedScene" uid="uid://da0ka6c1mh025" path="res://SCENES/WINDOWS/score_panel.tscn" id="23_3dvbv"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qs0cl"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_edvfp"]
 texture = ExtResource("3_ywwq7")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -31,7 +33,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s13g6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ktjw5"]
 texture = ExtResource("4_px7i4")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -39,7 +41,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6vwh"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40glx"]
 texture = ExtResource("5_qs0cl")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -47,7 +49,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_poiho"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ttjp"]
 texture = ExtResource("6_u6vwh")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -64,7 +66,7 @@ shader_parameter/distortion_speed = 2.0
 shader_parameter/tile = Vector2(1, 3)
 shader_parameter/offset = Vector2(0, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyvl4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4bhb"]
 texture = ExtResource("7_r3l7v")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -81,11 +83,11 @@ tile_shape = 1
 tile_layout = 5
 tile_offset_axis = 1
 tile_size = Vector2i(128, 78)
-sources/0 = SubResource("TileSetAtlasSource_qs0cl")
-sources/1 = SubResource("TileSetAtlasSource_s13g6")
-sources/2 = SubResource("TileSetAtlasSource_u6vwh")
-sources/3 = SubResource("TileSetAtlasSource_poiho")
-sources/4 = SubResource("TileSetAtlasSource_vyvl4")
+sources/0 = SubResource("TileSetAtlasSource_edvfp")
+sources/1 = SubResource("TileSetAtlasSource_ktjw5")
+sources/2 = SubResource("TileSetAtlasSource_40glx")
+sources/3 = SubResource("TileSetAtlasSource_7ttjp")
+sources/4 = SubResource("TileSetAtlasSource_p4bhb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_poiho"]
 shader = ExtResource("6_wrg6q")
@@ -143,22 +145,6 @@ texture_region_size = Vector2i(128, 128)
 3:0/0/material = SubResource("ShaderMaterial_8k7iv")
 4:0/0 = 0
 4:0/0/material = SubResource("ShaderMaterial_8k7iv")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh1xn"]
-texture = ExtResource("12_vyvl4")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 53)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, 53)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 53)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(0, 53)
-4:0/0 = 0
-4:0/0/texture_origin = Vector2i(0, 53)
-5:0/0 = 0
-5:0/0/texture_origin = Vector2i(0, 53)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uefkr"]
 shader = ExtResource("6_wrg6q")
@@ -222,21 +208,107 @@ texture_region_size = Vector2i(140, 140)
 4:0/0/material = SubResource("ShaderMaterial_lh1xn")
 4:0/0/y_sort_origin = 65
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bumc"]
+texture = ExtResource("14_edvfp")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 26)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 26)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 26)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 26)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 26)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 26)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 26)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, 26)
+8:0/0 = 0
+8:0/0/texture_origin = Vector2i(0, 26)
+9:0/0 = 0
+9:0/0/texture_origin = Vector2i(0, 26)
+10:0/0 = 0
+10:0/0/texture_origin = Vector2i(0, 26)
+11:0/0 = 0
+11:0/0/texture_origin = Vector2i(0, 26)
+12:0/0 = 0
+12:0/0/texture_origin = Vector2i(0, 26)
+13:0/0 = 0
+13:0/0/texture_origin = Vector2i(0, 26)
+14:0/0 = 0
+14:0/0/texture_origin = Vector2i(0, 26)
+15:0/0 = 0
+15:0/0/texture_origin = Vector2i(0, 26)
+16:0/0 = 0
+16:0/0/texture_origin = Vector2i(0, 26)
+17:0/0 = 0
+17:0/0/texture_origin = Vector2i(0, 26)
+18:0/0 = 0
+18:0/0/texture_origin = Vector2i(0, 26)
+19:0/0 = 0
+19:0/0/texture_origin = Vector2i(0, 26)
+20:0/0 = 0
+20:0/0/texture_origin = Vector2i(0, 26)
+21:0/0 = 0
+21:0/0/texture_origin = Vector2i(0, 26)
+22:0/0 = 0
+22:0/0/texture_origin = Vector2i(0, 26)
+23:0/0 = 0
+23:0/0/texture_origin = Vector2i(0, 26)
+24:0/0 = 0
+24:0/0/texture_origin = Vector2i(0, 26)
+25:0/0 = 0
+25:0/0/texture_origin = Vector2i(0, 26)
+26:0/0 = 0
+26:0/0/texture_origin = Vector2i(0, 26)
+27:0/0 = 0
+27:0/0/texture_origin = Vector2i(0, 26)
+28:0/0 = 0
+28:0/0/texture_origin = Vector2i(0, 26)
+29:0/0 = 0
+29:0/0/texture_origin = Vector2i(0, 26)
+30:0/0 = 0
+30:0/0/texture_origin = Vector2i(0, 26)
+31:0/0 = 0
+31:0/0/texture_origin = Vector2i(0, 26)
+32:0/0 = 0
+32:0/0/texture_origin = Vector2i(0, 26)
+33:0/0 = 0
+33:0/0/texture_origin = Vector2i(0, 26)
+34:0/0 = 0
+34:0/0/texture_origin = Vector2i(0, 26)
+35:0/0 = 0
+35:0/0/texture_origin = Vector2i(0, 26)
+36:0/0 = 0
+36:0/0/texture_origin = Vector2i(0, 26)
+37:0/0 = 0
+37:0/0/texture_origin = Vector2i(0, 26)
+
 [sub_resource type="TileSet" id="TileSet_14x4p"]
 tile_shape = 1
 tile_layout = 5
 tile_offset_axis = 1
 tile_size = Vector2i(128, 78)
-sources/0 = SubResource("TileSetAtlasSource_8k7iv")
-sources/1 = SubResource("TileSetAtlasSource_uefkr")
-sources/2 = SubResource("TileSetAtlasSource_0aujf")
-sources/100 = SubResource("TileSetAtlasSource_lh1xn")
-sources/3 = SubResource("TileSetAtlasSource_v80ui")
+sources/1000 = SubResource("TileSetAtlasSource_8k7iv")
+sources/1001 = SubResource("TileSetAtlasSource_uefkr")
+sources/1002 = SubResource("TileSetAtlasSource_0aujf")
+sources/1003 = SubResource("TileSetAtlasSource_v80ui")
+sources/1100 = SubResource("TileSetAtlasSource_0bumc")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_oqcjx"]
+scenes/2000/scene = ExtResource("6_qs0cl")
+scenes/2001/scene = ExtResource("16_edvfp")
 
 [sub_resource type="TileSet" id="TileSet_0ebmn"]
 tile_shape = 1
 tile_layout = 5
+tile_offset_axis = 1
 tile_size = Vector2i(128, 78)
+sources/0 = SubResource("TileSetScenesCollectionSource_oqcjx")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgn5c"]
 atlas = ExtResource("20_0emoc")
@@ -246,12 +318,12 @@ region = Rect2(1160, -5.5, 111, 129)
 y_sort_enabled = true
 script = ExtResource("1_02l3m")
 
-[node name="MAP" type="Node2D" parent="." unique_id=1579809073 node_paths=PackedStringArray("terrainlayer", "objectlayer", "specialTilesLayer", "unitNode", "effectNode")]
+[node name="MAP" type="Node2D" parent="." unique_id=1579809073 node_paths=PackedStringArray("terrainlayer", "objectlayer", "buildingLayer", "unitNode", "effectNode")]
 y_sort_enabled = true
 script = ExtResource("2_4a5wk")
 terrainlayer = NodePath("terrainLayer")
 objectlayer = NodePath("objectLayer")
-specialTilesLayer = NodePath("specialTileLayer")
+buildingLayer = NodePath("buildingLayer")
 unitNode = NodePath("UnitNode")
 effectNode = NodePath("EffectNode")
 
@@ -267,27 +339,17 @@ y_sort_enabled = true
 scale = Vector2(1, 0.7)
 tile_set = SubResource("TileSet_14x4p")
 
-[node name="specialTileLayer" type="TileMapLayer" parent="MAP" unique_id=2097568435]
-z_index = 20
-y_sort_enabled = true
-scale = Vector2(1, 0.7)
-tile_map_data = PackedByteArray("AAAAAAIAAAAAAAIAAAA=")
-tile_set = SubResource("TileSet_0ebmn")
-
-[node name="spawnportal" parent="MAP" unique_id=710617073 instance=ExtResource("6_qs0cl")]
+[node name="buildingLayer" type="TileMapLayer" parent="MAP" unique_id=2097568435]
 z_index = 10
 y_sort_enabled = true
-position = Vector2(64, 0)
+scale = Vector2(1, 0.7)
+tile_set = SubResource("TileSet_0ebmn")
 
 [node name="UnitNode" type="Node2D" parent="MAP" unique_id=668589725]
 z_index = 10
 y_sort_enabled = true
 
 [node name="EffectNode" type="Node2D" parent="MAP" unique_id=1063722436]
-
-[node name="ward" type="Node2D" parent="MAP/EffectNode" unique_id=1299781871]
-
-[node name="Sprite2D" type="Sprite2D" parent="MAP/EffectNode/ward" unique_id=1111674605]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1532358784]
 script = ExtResource("7_s13g6")
@@ -302,6 +364,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="CircleMenuContainer" parent="UI/CircleMenu" unique_id=1468969673 instance=ExtResource("18_v80ui")]
 layout_mode = 1
@@ -324,11 +387,12 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/HomingButton" unique_id=1241161794]
+custom_maximum_size = Vector2(200, 200)
 layout_mode = 0
-offset_left = -90.0
-offset_top = 17.000002
-offset_right = 96.0
-offset_bottom = 219.49997
+offset_left = -60.0
+offset_top = 17.0
+offset_right = 51.0
+offset_bottom = 146.0
 scale = Vector2(0.4, 0.4)
 tooltip_text = "FOCUS ON PORTAL"
 texture = SubResource("AtlasTexture_sgn5c")
@@ -336,12 +400,31 @@ script = ExtResource("21_l5yai")
 sigText = "Return To Home"
 
 [node name="UnitActivityPanel" parent="UI" unique_id=1247858227 instance=ExtResource("22_24rjf")]
-anchors_preset = 7
+anchors_preset = 2
+anchor_left = 0.0
 anchor_top = 1.0
+anchor_right = 0.0
 anchor_bottom = 1.0
-offset_top = -148.0
-offset_bottom = -148.0
+offset_left = 220.0
+offset_top = -98.0
+offset_right = 220.0
+offset_bottom = -98.0
+grow_horizontal = 1
 grow_vertical = 0
 ButtonGroupName = "UnitActivityPanel"
+
+[node name="ScorePanel" parent="UI" unique_id=1009259241 instance=ExtResource("23_3dvbv")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 90.0
+offset_top = 175.0
+offset_right = 90.0
+offset_bottom = 175.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="UI/MarginContainer/HomingButton/TextureRect" to="UI/MarginContainer/HomingButton/TextureRect" method="_on_gui_input"]

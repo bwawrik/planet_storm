@@ -1,6 +1,6 @@
 ##add this to scene to globals
 extends Node
-
+@warning_ignore_start("unused_signal")
 ##examples
 #signal player_damaged(damage: float)
 #signal item_collected(item_name: String)
@@ -27,6 +27,7 @@ signal UnselectAll()
 signal UnitSelected(togglePos: int)
 signal selectArea(area: Rect2) # global_position rect
 signal SelectionBoxStarted()
+signal RightClickOnMap(event: InputEvent)
 
 # tile signals
 signal Timber(pos:Vector2i)
@@ -38,4 +39,8 @@ signal TextSignal(str: String)
 
 ## emitted by selection of any HToggleButtonGroup
 signal HToggleButtonGroup(n: int, ButtonGroupName: String)
-##
+
+## inventory  update
+signal update_inventories
+
+@warning_ignore_restore("unused_signal")

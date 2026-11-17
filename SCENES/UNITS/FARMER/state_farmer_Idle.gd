@@ -2,7 +2,7 @@
 class_name StateFarmerIdle
 extends State
 
-const PONDER_DURATION := 2.0
+const PONDER_DURATION := 0.4
 const TREE_SEARCH_DISTANCE := 6
 const SPOT_SEARCH_DISTANCE := 6
 const WANDER_DISTANCE := 4
@@ -32,21 +32,48 @@ func update(delta: float) -> void:
 
 
 ## Decision tree: carrying cargo.
-## 1. Walk to a spot with no trees on or next to it.
-## 2. Otherwise, wander.
+## 1. if current_order == POSSIBLE_ORDERS.GATHER, deliver to portal
+## 2. If at portal add cargo to inventory and go back to orders
+## 3. Otherwise, wander.
 func _decide_when_carrying(map: MapManager, from: Vector2i) -> void:
-	var spots = map.FindClearSpotsWithin(from, SPOT_SEARCH_DISTANCE)
-	if _go_to_nearest(map, from, spots, UnitMemory.Intent.DELIVER): return
-	_wander(map, from)
+	var to = Vector2i.ZERO	
+	if from == to:
+		SharedData.gameManager.inv.AddItem(actor.cargo.item, actor.cargo.amount)
+		SharedData.PlaySound(SharedData.soundEffects[23],null,0.5)
+		actor.cargo.item = null
+		actor.cargo.amount = 0
+		return
+
+	if actor.current_order == actor.POSSIBLE_ORDERS.GATHER:
+		
+		_start_move(map, from, to, UnitMemory.Intent.DELIVER) 
+		return
+	else:		
+		var spots = map.FindClearSpotsWithin(from, SPOT_SEARCH_DISTANCE)
+		if _go_to_nearest(map, from, spots, UnitMemory.Intent.DELIVER): return
+		_wander(map, from)
 
 
 ## Decision tree: empty handed.
-## 1. Walk to the nearest reachable tree and chop it.
+## 1. if order current_order == POSSIBLE_ORDERS.CHOP_WOOD Walk to the nearest reachable tree and chop it.
 ## 2. Otherwise, wander.
 func _decide_when_empty_handed(map: MapManager, from: Vector2i) -> void:
-	var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
-	if _go_to_nearest(map, from, trees, UnitMemory.Intent.CHOP_WOOD): return
-	_wander(map, from)
+	match actor.current_order:
+		actor.POSSIBLE_ORDERS.GATHER:
+			var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
+			if _go_to_nearest(map, from, trees, UnitMemory.Intent.CHOP_WOOD): 
+				return
+			else:
+				_wander(map, from)
+		actor.POSSIBLE_ORDERS.BUILD:
+			var totem_pos = map.FindNearestTotem(from)
+			if totem_pos != null:
+				if _start_move(map, from, totem_pos, UnitMemory.Intent.BUILD):
+					return
+				else:
+					_wander(map, from)
+		_:
+			_wander(map, from)
 
 
 func _wander(map: MapManager, from: Vector2i) -> void:
@@ -64,6 +91,9 @@ func _go_to_nearest(map: MapManager, from: Vector2i, targets: Array[Vector2i], i
 		if path.is_empty(): continue
 		if best_path.is_empty() or path.size() < best_path.size():
 			best_path = path
+		elif path.size() == best_path.size():
+			if randi_range(0,1) == 1:
+				best_path = path
 	if best_path.is_empty(): return false
 	_begin_move(best_path, intent)
 	return true

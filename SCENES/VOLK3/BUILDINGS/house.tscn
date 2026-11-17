@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cloh5e8e7yfay"]
+
+[ext_resource type="Texture2D" uid="uid://lm0p0nw7v3ka" path="res://IMAGES/SPRITESHEETS/house_construction.png" id="1_umvae"]
+[ext_resource type="Script" uid="uid://bkos8lwc52ac4" path="res://SCENES/VOLK3/BUILDINGS/house.gd" id="2_kds7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umvae"]
+atlas = ExtResource("1_umvae")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kds7w"]
+atlas = ExtResource("1_umvae")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwd7s"]
+atlas = ExtResource("1_umvae")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25c26"]
+atlas = ExtResource("1_umvae")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6te1"]
+atlas = ExtResource("1_umvae")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqman"]
+atlas = ExtResource("1_umvae")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgn5c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umvae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kds7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwd7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25c26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6te1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqman")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=442065893]
+script = ExtResource("2_kds7w")
+
+[node name="House" type="AnimatedSprite2D" parent="." unique_id=1275397168]
+y_sort_enabled = true
+position = Vector2(0, -57)
+scale = Vector2(0.935, 1.09)
+sprite_frames = SubResource("SpriteFrames_sgn5c")

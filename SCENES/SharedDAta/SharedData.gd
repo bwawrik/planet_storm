@@ -225,8 +225,8 @@ func _screenShake3d(strength: float, duration: float) -> void:
 
 #endregion
 
-func GetItemByName(name: String) -> InventoryItem:
+func GetItemByName(_name: String) -> InventoryItem:
 	for i in gameItems:
-		if i.name == name:
+		if i.name == _name:
 			return i
 	return null

@@ -60,7 +60,7 @@ func move_camera_on_edge():
 		myCam.position.y += move_distance
 
 
-func BlockScreenEdgeMovement(canMove, what) -> void:
+func BlockScreenEdgeMovement(canMove, _what) -> void:
 	#print (canMove, what)
 	screenEdgeMovementAllowed = !canMove
 	return

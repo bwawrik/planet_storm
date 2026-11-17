@@ -22,7 +22,7 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		isActive = true
 		portalVisual.visible = true
 		progressBar.visible = true
-		progressBar.value +=20
+		progressBar.value +=30
 
 
 func _process(_deltaTime: float) -> void:

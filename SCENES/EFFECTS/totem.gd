@@ -1,9 +1,10 @@
 extends Node2D
+class_name Totem
 
 var startPos: Vector2
 var endPos: Vector2
 var lifetime: float = 20
-#var item: InventoryItem
+## recipe come from CircleMenuContainer
 var recipe: ItemRecipe
 
 var tm: float = 0
@@ -11,8 +12,9 @@ var tm: float = 0
 func _init() -> void:
 	visible = false
 	
-func displayTotem(epos: Vector2, itm: InventoryItem) -> void:
-	$totem_sprite.texture = itm.texture
+func displayTotem(epos: Vector2, itm: ItemRecipe) -> void:
+	$totem_sprite.texture = itm.item.texture
+	recipe = itm
 	endPos = epos
 	startPos = epos + Vector2.UP * 500
 	position = startPos

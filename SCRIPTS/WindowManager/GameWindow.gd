@@ -91,8 +91,8 @@ func _on_close_button_gui_input(event: InputEvent) -> void:
 
 func _move_window_to(target_global_position: Vector2) -> void:
 	var viewport_size := get_viewport_rect().size
-	var max_x := maxf(0.0, viewport_size.x - size.x)
-	var max_y := maxf(0.0, viewport_size.y - size.y)
+	#var max_x := maxf(0.0, viewport_size.x - size.x)
+	#var max_y := maxf(0.0, viewport_size.y - size.y)
 	global_position = Vector2(target_global_position.x, target_global_position.y)
 
 

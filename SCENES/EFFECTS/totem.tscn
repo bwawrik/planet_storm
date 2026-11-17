@@ -32,7 +32,7 @@ atlas = ExtResource("3_87ad0")
 [sub_resource type="CircleShape2D" id="CircleShape2D_sgn5c"]
 radius = 259.62473
 
-[node name="Node2D" type="Node2D" unique_id=1076216099]
+[node name="Totem" type="Node2D" unique_id=1076216099]
 script = ExtResource("1_s0pam")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1404845718]

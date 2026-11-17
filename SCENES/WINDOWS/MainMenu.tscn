@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://byac7kjn284dv" path="res://SCRIPTS/WindowManager/window_theme_1.tres" id="2_so3xd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgn5c"]
-bg_color = Color(0.10804147, 0.23485923, 0.3388478, 1)
+bg_color = Color(0.074664004, 0.27589348, 0.18937978, 1)
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 

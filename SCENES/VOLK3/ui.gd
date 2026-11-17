@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var unit_activity_panel: HToggleButtonGroup = $UnitActivityPanel
-@onready var map: MapManager = $"../MAP"
 
 const MIN_DRAG_SIZE := 40.0
 
@@ -19,8 +18,14 @@ func _ready() -> void:
 	add_child(_box)
 
 func _process(_delta: float) -> void:
-	unit_activity_panel.visible = map.HasSelectedUnits()
-
+	var units_selected = SharedData.MAP.HasSelectedUnits()
+	if unit_activity_panel.visible != units_selected:
+		unit_activity_panel.visible = units_selected
+		if units_selected == true:
+			var units = SharedData.MAP.GetSelectedUnits()
+			if units != null and units.size()>0:
+				unit_activity_panel.SetValue(units[0].current_order)
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -40,6 +45,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_selection_box_started = true
 			SignalBus.SelectionBoxStarted.emit()
 		_box.queue_redraw()
+	elif event.is_action_pressed("ShiftRightClick", true):
+		SignalBus.RightClickOnMap.emit(event)
+	elif event.is_action_pressed("RightClick", true):
+		SignalBus.RightClickOnMap.emit(event)
+		SignalBus.UnselectAll.emit.call_deferred()
 
 func _screen_rect() -> Rect2:
 	return Rect2(_start, Vector2.ZERO).expand(_end)

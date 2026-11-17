@@ -35,7 +35,8 @@ func _select() -> void:
 	#if item:
 	#	selected.emit(item)
 	if itemRecipe.item:
-		selected.emit(itemRecipe.item)
+		#selected.emit(itemRecipe.item)
+		selected.emit(itemRecipe)
 
 func _focus():
 	add_theme_stylebox_override("panel", selectedStyleBox)
