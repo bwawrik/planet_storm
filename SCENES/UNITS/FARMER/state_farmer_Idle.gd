@@ -58,29 +58,61 @@ func _decide_when_carrying(map: MapManager, from: Vector2i) -> void:
 ## 1. if order current_order == POSSIBLE_ORDERS.CHOP_WOOD Walk to the nearest reachable tree and chop it.
 ## 2. Otherwise, wander.
 func _decide_when_empty_handed(map: MapManager, from: Vector2i) -> void:
+	if actor.memory.order.resource_type != Order.ResourceType.NONE:
+		_continue_resource_order(map, from)
+		return
+
 	match actor.current_order:
 		actor.POSSIBLE_ORDERS.GATHER:
-			if actor.memory.order.resource_type == Order.ResourceType.NONE:
-				var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
-				var rocks := map.FindRocksWithin(from, TREE_SEARCH_DISTANCE)
-				var tree_path := _nearest_path(map, from, trees)
-				var rock_path := _nearest_path(map, from, rocks)
-				if not rock_path.is_empty() and (tree_path.is_empty() or rock_path.size() < tree_path.size()):
-					_begin_move(rock_path, UnitMemory.Intent.MINE)
-					return
-				if not tree_path.is_empty():
-					_begin_move(tree_path, UnitMemory.Intent.COLLECT)
-					return
+			var trees := map.FindTreesWithin(from, TREE_SEARCH_DISTANCE)
+			var rocks := map.FindRocksWithin(from, TREE_SEARCH_DISTANCE)
+			var tree_path := _nearest_path(map, from, trees)
+			var rock_path := _nearest_path(map, from, rocks)
+			if not rock_path.is_empty() and (tree_path.is_empty() or rock_path.size() < tree_path.size()):
+				_begin_move(rock_path, UnitMemory.Intent.MINE)
+				return
+			if not tree_path.is_empty():
+				_begin_move(tree_path, UnitMemory.Intent.COLLECT)
+				return
 			_wander(map, from)
 		actor.POSSIBLE_ORDERS.BUILD:
 			var totem_pos = map.FindNearestTotem(from)
-			if totem_pos != null:
-				if _start_move(map, from, totem_pos, UnitMemory.Intent.BUILD):
-					return
-				else:
-					_wander(map, from)
+			if totem_pos == null:
+				# Keep the selected build order; the next idle update checks again.
+				return
+			_start_move(map, from, totem_pos, UnitMemory.Intent.BUILD)
+			return
 		_:
 			_wander(map, from)
+
+
+func _continue_resource_order(map: MapManager, from: Vector2i) -> void:
+	var order: Order = actor.memory.order
+	var resource: Order.ResourceType = order.preferred_target
+	if resource == Order.ResourceType.NONE:
+		resource = Order.ResourceType.ROCKS if order.resource_type == Order.ResourceType.MINE else order.resource_type
+
+	var targets: Array[Vector2i] = []
+	match resource:
+		Order.ResourceType.ROCKS:
+			targets = map.FindRocksWithin(order.anchor_position, order.search_radius)
+		Order.ResourceType.TREES:
+			targets = map.FindTreesWithin(order.anchor_position, order.search_radius)
+		_:
+			return
+
+	if targets.has(order.anchor_position):
+		if _start_move(map, from, order.anchor_position, _intent_for_resource(resource)):
+			return
+	var best_path := _nearest_path(map, from, targets)
+	if not best_path.is_empty():
+		_begin_move(best_path, _intent_for_resource(resource))
+
+
+func _intent_for_resource(resource: Order.ResourceType) -> UnitMemory.Intent:
+	if resource == Order.ResourceType.ROCKS:
+		return UnitMemory.Intent.MINE
+	return UnitMemory.Intent.COLLECT
 
 
 func _wander(map: MapManager, from: Vector2i) -> void:

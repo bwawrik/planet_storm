@@ -22,8 +22,11 @@ func update(_delta: float) -> void:
 			if map != null:
 				var tree_tile: Vector2i = actor.memory.target_position
 				#var tree_global := map.objectlayer.to_global(map.objectlayer.map_to_local(tree_tile))
-				map.RemoveTree(tree_tile)
-				SharedData.PlayEffect(SharedData.effects[0],actor.mySprite.global_position,0,map.effectNode)
+				# rocks can persist and don't always get completely removed
+				if (randi_range(0,3)==1):
+					map.RemoveTree(tree_tile)
+				
+				SharedData.PlayEffect(SharedData.effects[2],actor.mySprite.global_position,0,map.effectNode)
 				SignalBus.Timber.emit(actor.memory.target_position)
 			finished.emit("Idle", {})
 			var itm = SharedData.GetItemByName("ROCK")
