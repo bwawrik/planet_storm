@@ -35,14 +35,16 @@ func _process(_deltaTime: float) -> void:
 	
 	if isActive==false : return
 	## Update the progress bar based on the timer
+
+	## Check if the progress bar has reached its maximum value
+	if progressBar.value >= progressBar.max_value:
+		resetProgressBar()
+
 	myTimer += _deltaTime
 	if myTimer > timerInterval:
 		myTimer = 0
 		progressBar.value -= 1
 		if progressBar.value <0 : progressBar.value = 0
-	## Check if the progress bar has reached its maximum value
-	if progressBar.value >= progressBar.max_value:
-		resetProgressBar()
 
 
 func resetProgressBar() -> void:

@@ -79,7 +79,8 @@ func PlaceTotemSelected(menu_visible: bool, viewport_pos: Vector2):
 
 	# don't place totems when units are seleted
 	if SharedData.MAP.HasSelectedUnits() == true: return
-	if SharedData.UINode.build_panel.recipe == null: return
+	var recipe = SharedData.UINode.build_panel.recipe
+	if recipe == null or recipe.name == &"CLEAR": return
 	print ("placing")
 	## check if walkable
 	var terrain: TileMapLayer = SharedData.MAP.terrainlayer
@@ -94,7 +95,7 @@ func PlaceTotemSelected(menu_visible: bool, viewport_pos: Vector2):
 	var totem_position := effect_node.get_global_transform_with_canvas().affine_inverse() * snapped_viewport_position
 	vs.tile_position = tile
 	effect_node.add_child(vs)
-	vs.displayTotem(totem_position, SharedData.UINode.build_panel.recipe)
+	vs.displayTotem(totem_position, recipe)
 	
 
 

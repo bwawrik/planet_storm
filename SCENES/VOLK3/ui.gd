@@ -14,6 +14,7 @@ var _right_press_position := Vector2.ZERO
 var _right_last_tile := Vector2i.ZERO
 var _selection_box_started := false
 var _placing_totems := false
+var _clearing_totems := false
 var _totem_hold_pending := false
 var _has_last_totem_tile := false
 var _last_totem_tile := Vector2i.ZERO
@@ -45,34 +46,44 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed:
 			_dragging = true
 			_selection_box_started = false
-			_totem_hold_pending = build_panel.recipe != null and not SharedData.MAP.HasSelectedUnits()
+			_clearing_totems = _is_clear_selected()
+			_totem_hold_pending = build_panel.recipe != null and not _clearing_totems and not SharedData.MAP.HasSelectedUnits()
 			_placing_totems = false
 			_has_last_totem_tile = false
 			_start = event.position
 			_end = event.position
+			if _clearing_totems:
+				_clear_totems_at(event.position)
 		elif _dragging:
 			var hold_was_pending := _totem_hold_pending
 			_totem_hold_pending = false
-			if _placing_totems:
+			if _clearing_totems:
+				_clear_totems_at(event.position)
+			elif _placing_totems:
 				_place_totem_at(event.position)
 			_dragging = false
 			_end = event.position
 			_box.queue_redraw()
-			if not _placing_totems and (not hold_was_pending or event.position.distance_to(_start) > 5.0):
+			if not _clearing_totems and not _placing_totems and (not hold_was_pending or event.position.distance_to(_start) > 5.0):
 				_emit_area()
 			_placing_totems = false
+			_clearing_totems = false
 	elif event is InputEventMouseMotion:
 		if _dragging:
 			_end = event.position
-			if _placing_totems:
+			if _clearing_totems:
+				_clear_totems_at(event.position)
+				_box.queue_redraw()
+			elif _placing_totems:
 				_place_totem_at(event.position)
 				_box.queue_redraw()
 				return
-			var screen := _screen_rect()
-			if not _selection_box_started and (screen.size.x >= MIN_DRAG_SIZE or screen.size.y >= MIN_DRAG_SIZE):
-				_selection_box_started = true
-				SignalBus.SelectionBoxStarted.emit()
-			_box.queue_redraw()
+			else:
+				var screen := _screen_rect()
+				if not _selection_box_started and (screen.size.x >= MIN_DRAG_SIZE or screen.size.y >= MIN_DRAG_SIZE):
+					_selection_box_started = true
+					SignalBus.SelectionBoxStarted.emit()
+				_box.queue_redraw()
 		if _right_mouse_down:
 			_update_right_mouse_drag(event.position)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -80,11 +91,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_right_mouse_down = true
 			_right_dragging = false
 			_right_press_position = event.position
-			_right_last_tile = _tile_at(event.position)
 		elif _right_mouse_down:
-			if _right_dragging:
-				var release_tile := _tile_at(event.position)
-				_remove_totems_between(_right_last_tile, release_tile)
 			_right_mouse_down = false
 			_right_dragging = false
 
@@ -100,7 +107,7 @@ func _screen_rect() -> Rect2:
 	return Rect2(_start, Vector2.ZERO).expand(_end)
 
 func _draw_box() -> void:
-	if not _dragging or _placing_totems:
+	if not _dragging or _placing_totems or _clearing_totems:
 		return
 	var r := _screen_rect()
 	_box.draw_rect(r, Color(0.3, 0.7, 1.0, 0.25), true)
@@ -113,6 +120,18 @@ func _place_totem_at(viewport_pos: Vector2) -> void:
 	_last_totem_tile = tile
 	_has_last_totem_tile = true
 	SignalBus.CircleMenuLeftMouse.emit(false, viewport_pos)
+
+func _is_clear_selected() -> bool:
+	return build_panel.recipe != null and build_panel.recipe.name == &"CLEAR"
+
+func _clear_totems_at(viewport_pos: Vector2) -> void:
+	var tile := _tile_at(viewport_pos)
+	if _has_last_totem_tile:
+		_remove_totems_between(_last_totem_tile, tile)
+	else:
+		_remove_totems_between(tile, tile)
+	_last_totem_tile = tile
+	_has_last_totem_tile = true
 
 func _on_circle_menu_left_mouse(hold_completed: bool, viewport_pos: Vector2) -> void:
 	if not hold_completed or not _totem_hold_pending or not _dragging:
@@ -130,10 +149,6 @@ func _update_right_mouse_drag(viewport_pos: Vector2) -> void:
 			return
 		_right_dragging = true
 		SignalBus.CircleMenuVisible.emit(false, Vector2.ZERO)
-
-	var tile := _tile_at(viewport_pos)
-	_remove_totems_between(_right_last_tile, tile)
-	_right_last_tile = tile
 
 func _on_circle_menu_visibility_changed(menu_visible: bool, _viewport_pos: Vector2) -> void:
 	_circle_menu_visible = menu_visible
