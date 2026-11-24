@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://bjvdkph8gmhbq"]
+
+[ext_resource type="Script" uid="uid://dxrwk861cfcrl" path="res://SCRIPTS/inventory_system/inventory_slot.gd" id="1_jm71j"]
+[ext_resource type="Resource" uid="uid://dl5daam875r8k" path="res://SCENES/INVENTORY_ITEMS/ITEM_rock.tres" id="2_jm71j"]
+[ext_resource type="Resource" uid="uid://c3hs6qa7kjvht" path="res://SCENES/INVENTORY_ITEMS/ITEM_road.tres" id="3_k7f20"]
+[ext_resource type="Script" uid="uid://c1pst88f4uaec" path="res://SCRIPTS/inventory_system/recipe_resource.gd" id="4_g7bf6"]
+
+[sub_resource type="Resource" id="Resource_22q1n"]
+script = ExtResource("1_jm71j")
+item = ExtResource("2_jm71j")
+amount = 2
+metadata/_custom_type_script = "uid://dxrwk861cfcrl"
+
+[resource]
+script = ExtResource("4_g7bf6")
+name = &"ROAD"
+item = ExtResource("3_k7f20")
+ingredients = Array[ExtResource("1_jm71j")]([SubResource("Resource_22q1n")])
+metadata/_custom_type_script = "uid://c1pst88f4uaec"

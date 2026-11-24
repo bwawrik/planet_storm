@@ -1,14 +1,14 @@
 extends Control
 
-@onready var n_gold: RichTextLabel = $MarginContainer/VBoxContainer/gold/n_gold
 @onready var n_wood: RichTextLabel = $MarginContainer/VBoxContainer/wood/n_wood
-@onready var n_water: RichTextLabel = $MarginContainer/VBoxContainer/water/n_water
+@onready var n_gold: RichTextLabel = $MarginContainer/VBoxContainer/gold/n_gold
+@onready var n_rock: RichTextLabel = $MarginContainer/VBoxContainer/rock/n_rock
 @onready var n_food: RichTextLabel = $MarginContainer/VBoxContainer/food/n_food
 
 var last = {
-	"GOLD":"0",
 	"WOOD":"0",
-	"WATER":"0",
+	"GOLD":"0",
+	"ROCK":"0",
 	"FOOD":"0",
 }
 
@@ -17,9 +17,9 @@ func _process(_deltaTime: float) -> void:
 		return
 
 	var counts: Dictionary = {
-		"GOLD": 0,
 		"WOOD": 0,
-		"WATER": 0,
+		"GOLD": 0,
+		"ROCK": 0,
 		"FOOD": 0,
 	}
 
@@ -39,10 +39,10 @@ func _process(_deltaTime: float) -> void:
 		n_wood.text = last.WOOD
 		_blip(n_wood)
 
-	if counts["WATER"] != int(last.WATER):
-		last.WATER = str(counts["WATER"])
-		n_water.text = last.WATER
-		_blip(n_water)
+	if counts["ROCK"] != int(last.ROCK):
+		last.ROCK = str(counts["ROCK"])
+		n_rock.text = last.ROCK
+		_blip(n_rock)
 
 	if counts["FOOD"] != int(last.FOOD):
 		last.FOOD = str(counts["FOOD"])

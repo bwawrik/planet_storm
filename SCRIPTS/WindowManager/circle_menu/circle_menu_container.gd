@@ -2,15 +2,15 @@
 extends Control
 
 const CircleMenuIcon = preload("res://SCRIPTS/WindowManager/circle_menu/texture_rect.gd")
-
+const QUICK_CLICK_MAX_MSEC := 300
 var _scale_tween: Tween
-
+var _left_press_started_at_msec := -1
 
 @export var radius = 150:
 	set (value):
 		radius = value
 		_refresh()
-		
+
 func _refresh(_child = null):
 	var icons: Array[CircleMenuIcon] = []
 	for child in get_children():
@@ -29,7 +29,7 @@ func _refresh(_child = null):
 		child.focus_previous = child.get_path_to(icons[(index + icons.size() - 1) % icons.size()])
 		if not Engine.is_editor_hint() and not child.selected.is_connected(_select_item):
 			child.selected.connect(_select_item)
-
+		
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
@@ -39,49 +39,69 @@ func _ready() -> void:
 		visibility_changed.connect(_on_tree_visibility_changed)
 	child_entered_tree.connect(_refresh)
 	child_exiting_tree.connect(_on_child_exited)
+	SignalBus.CircleMenuLeftMouse.connect(PlaceTotemSelected)
 	
 	_refresh()
+	_Hide()
 	if not Engine.is_editor_hint():
 		_on_tree_visibility_changed()
 
+
 func _input(event: InputEvent) -> void:
-	if Engine.is_editor_hint() or not is_visible_in_tree():
+	if Engine.is_editor_hint():
 		return
+#	if not is_visible_in_tree():		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+#			if event.pressed:
+#				_left_press_started_at_msec = Time.get_ticks_msec()
+#			elif _left_press_started_at_msec >= 0:
+#				var press_duration_msec := Time.get_ticks_msec() - _left_press_started_at_msec
+#				_left_press_started_at_msec = -1
+#				if press_duration_msec < QUICK_CLICK_MAX_MSEC:
+#					PlaceTotemSelected(event)
+#		return
 	if event is InputEventMouseMotion:
 		_focus_nearest_icon(event.position)
 	elif event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			#hide()
 			_Hide()
 		elif event.button_index == MOUSE_BUTTON_LEFT and not _is_over_icon(event.position):
-			#hide()
 			_Hide()
 
-#func _select_item(itm: InventoryItem) -> void:
+## function needed to populate the build_panel
 func _select_item(itm: ItemRecipe) -> void:
+	SignalBus.BuildRecipeSelected.emit(itm)
+	_Hide()
+
+
+
+
+func PlaceTotemSelected(menu_visible: bool, viewport_pos: Vector2):
+
+	# don't place totems when units are seleted
+	if SharedData.MAP.HasSelectedUnits() == true: return
+	if SharedData.UINode.build_panel.recipe == null: return
+	print ("placing")
 	## check if walkable
 	var terrain: TileMapLayer = SharedData.MAP.terrainlayer
-	var menu_viewport_position := get_global_transform_with_canvas().origin
-	var tile := terrain.local_to_map(terrain.get_global_transform_with_canvas().affine_inverse() * menu_viewport_position)
+	var tile := terrain.local_to_map(terrain.get_global_transform_with_canvas().affine_inverse() * viewport_pos)
 	if not SharedData.MAP.IsWalkable(tile):
-		_Hide()
 		return
-
-	## if it is walkable, place totem on the corresponding tile
-	SignalBus.ItemSelected.emit(itm)
-	#hide()
-	_Hide()
 	var vs = SharedData.effects[1].instantiate()
 	var effect_node: Node2D = SharedData.MAP.effectNode
 	var snapped_viewport_position := terrain.get_global_transform_with_canvas() * terrain.map_to_local(tile)
 	var totem_position := effect_node.get_global_transform_with_canvas().affine_inverse() * snapped_viewport_position
 	effect_node.add_child(vs)
-	vs.displayTotem(totem_position, itm)
+	vs.displayTotem(totem_position, SharedData.UINode.build_panel.recipe)
 	
+
+
 
 func _Hide() -> void:
 	hide()
 	SignalBus.CircleMenuVisible.emit(false, Vector2.ZERO)
+
+
+
 
 func _on_visibility_changed(menu_visible: bool, viewport_pos: Vector2) -> void:
 	if menu_visible:
@@ -89,6 +109,9 @@ func _on_visibility_changed(menu_visible: bool, viewport_pos: Vector2) -> void:
 	visible = menu_visible
 	if menu_visible and is_visible_in_tree():
 		_focus_nearest_icon(viewport_pos)
+
+
+
 
 func _on_tree_visibility_changed() -> void:
 	if _scale_tween and _scale_tween.is_valid():

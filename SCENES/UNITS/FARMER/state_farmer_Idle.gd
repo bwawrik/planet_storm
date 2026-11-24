@@ -49,9 +49,10 @@ func _decide_when_carrying(map: MapManager, from: Vector2i) -> void:
 		_start_move(map, from, to, UnitMemory.Intent.DELIVER) 
 		return
 	else:		
-		var spots = map.FindClearSpotsWithin(from, SPOT_SEARCH_DISTANCE)
-		if _go_to_nearest(map, from, spots, UnitMemory.Intent.DELIVER): return
-		_wander(map, from)
+		#var spots = map.FindClearSpotsWithin(from, SPOT_SEARCH_DISTANCE)
+		#if _go_to_nearest(map, from, spots, UnitMemory.Intent.DELIVER): return
+		#_wander(map, from)
+		_decide_when_empty_handed(map, from)
 
 
 ## Decision tree: empty handed.

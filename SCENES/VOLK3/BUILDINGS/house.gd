@@ -1,2 +1,2 @@
 extends Structure
-class_name house
+class_name structure_house

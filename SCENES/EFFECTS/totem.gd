@@ -6,6 +6,11 @@ var endPos: Vector2
 var lifetime: float = 20
 ## recipe come from CircleMenuContainer
 var recipe: ItemRecipe
+@export var decay: bool = false:
+	get:
+		return decay
+	set(value):
+		decay = value
 
 var tm: float = 0
 
@@ -40,7 +45,10 @@ func _input(event: InputEvent) -> void:
 			queue_free()
 
 func _process(delta: float) -> void:
-	tm += delta
-	if tm > lifetime: 
-		queue_free()
+	pass
+	
+	#if decay:
+	#	tm += delta
+	#	if tm > lifetime: 
+	#		queue_free()
 	

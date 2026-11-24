@@ -33,8 +33,10 @@ signal RightClickOnMap(event: InputEvent)
 signal Timber(pos:Vector2i)
 
 #menu signals
-signal ItemSelected(itm: InventoryItem)
-signal CircleMenuVisible(visible: bool, pos: Vector2) # Viewport coordinates.
+##signal set what is selected for building
+signal BuildRecipeSelected(itm: ItemRecipe)
+signal CircleMenuVisible(visible: bool, pos: Vector2) # Viewport coordinates.  # right mouse button signal
+signal CircleMenuLeftMouse(visible: bool, pos: Vector2) # Viewport coordinates.  # left mouse button signal
 signal TextSignal(str: String)
 
 ## emitted by selection of any HToggleButtonGroup

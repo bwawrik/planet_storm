@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d0o4hjmrof4kn"]
 
 [ext_resource type="Script" uid="uid://ccaigg4hcrjpp" path="res://SCENES/godfinger/godfinger.gd" id="1_e8n78"]
-[ext_resource type="Texture2D" uid="uid://b4gkahwx3x5vy" path="res://SCENES/godfinger/god_finger1.png" id="2_02isg"]
-[ext_resource type="Texture2D" uid="uid://d1oov0fhfsjh6" path="res://SCENES/godfinger/god_finger2.png" id="3_q8glk"]
+[ext_resource type="Texture2D" uid="uid://ceuxuuwiulm2y" path="res://SCENES/godfinger/precision2.png" id="2_dtgks"]
+[ext_resource type="Texture2D" uid="uid://dobcue6pu35nq" path="res://SCENES/godfinger/precision.png" id="3_kqcbd"]
 
 [node name="GODFINGER" type="Node2D" unique_id=1872880556]
 z_as_relative = false
 script = ExtResource("1_e8n78")
-custom_cursor = ExtResource("2_02isg")
-custom_cursor_clicked = ExtResource("3_q8glk")
+custom_cursor = ExtResource("2_dtgks")
+custom_cursor_clicked = ExtResource("3_kqcbd")

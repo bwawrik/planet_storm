@@ -1,6 +1,8 @@
 extends CanvasLayer
 
-@onready var unit_activity_panel: HToggleButtonGroup = $UnitActivityPanel
+@export var unit_activity_panel: HToggleButtonGroup
+@export var score_panel: Control 
+@export var build_panel: BuildPanel
 
 const MIN_DRAG_SIZE := 40.0
 
@@ -11,6 +13,7 @@ var _end := Vector2.ZERO
 var _box: Control
 
 func _ready() -> void:
+	SharedData.UINode = self
 	_box = Control.new()
 	_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_box.set_anchors_preset(Control.PRESET_FULL_RECT)

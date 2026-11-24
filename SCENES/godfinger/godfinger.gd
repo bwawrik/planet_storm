@@ -4,7 +4,8 @@ extends Node2D
 @export var custom_cursor:Texture2D
 @export var custom_cursor_clicked: Texture2D
 ## mouse cursor
-var hotspot = Vector2(60, 50)  # Adjust these values to set the tip of the cursor
+#var hotspot = Vector2(60, 50)  # Adjust these values to set the tip of the cursor; this is finger
+var hotspot = Vector2(12, 12)  # Adjust these values to set the tip of the cursor; this is finger
 
 func _ready() -> void:
 	pass

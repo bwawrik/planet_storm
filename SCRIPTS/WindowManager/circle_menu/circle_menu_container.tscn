@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://beettivdeq1xh" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.gd" id="1_40ipp"]
 [ext_resource type="PackedScene" uid="uid://5adihnhrufax" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_icon.tscn" id="2_1enjb"]
 [ext_resource type="Resource" uid="uid://g3duv3rjdxsm" path="res://SCENES/INVENTORY_ITEMS/RECIPE_ward_HOUSE.tres" id="3_s3ewf"]
-[ext_resource type="Resource" uid="uid://c1vlyyidorc3r" path="res://SCENES/INVENTORY_ITEMS/RECIPE_ward_TOWER.tres" id="4_lp1gq"]
+[ext_resource type="Resource" uid="uid://bjvdkph8gmhbq" path="res://SCENES/INVENTORY_ITEMS/RECIPE_ward_ROAD.tres" id="4_85lv1"]
+[ext_resource type="Resource" uid="uid://c1vlyyidorc3r" path="res://SCENES/INVENTORY_ITEMS/RECIPE_ward_TOWER.tres" id="5_22q1n"]
 
 [node name="CircleMenuContainer" type="Control" unique_id=1468969673]
 visible = false
@@ -24,15 +25,25 @@ offset_top = -200.0
 offset_right = 49.999992
 offset_bottom = -100.0
 focus_next = NodePath("../Control2")
-focus_previous = NodePath("../Control2")
+focus_previous = NodePath("../Control3")
 itemRecipe = ExtResource("3_s3ewf")
 
 [node name="Control2" parent="." unique_id=1706535060 instance=ExtResource("2_1enjb")]
 layout_mode = 1
-offset_left = -50.000008
-offset_top = 100.0
-offset_right = 49.999992
-offset_bottom = 200.0
-focus_next = NodePath("../Control")
+offset_left = 79.90381
+offset_top = 25.0
+offset_right = 179.90381
+offset_bottom = 125.0
+focus_next = NodePath("../Control3")
 focus_previous = NodePath("../Control")
-itemRecipe = ExtResource("4_lp1gq")
+itemRecipe = ExtResource("4_85lv1")
+
+[node name="Control3" parent="." unique_id=96481051 instance=ExtResource("2_1enjb")]
+layout_mode = 1
+offset_left = -179.90381
+offset_top = 25.000008
+offset_right = -79.90381
+offset_bottom = 125.00001
+focus_next = NodePath("../Control")
+focus_previous = NodePath("../Control2")
+itemRecipe = ExtResource("5_22q1n")

@@ -5,6 +5,7 @@ extends Node2D
 @export var objectlayer: TileMapLayer
 @export var buildingLayer: TileMapLayer
 @export var unitNode : Node2D
+@export var mobNode : Node2D
 @export var effectNode: Node2D
 
 var unitById: Dictionary = {}
@@ -102,12 +103,23 @@ func PlaceStructure(pos: Vector2i, _what: ItemRecipe) -> bool:
 		"HOUSE":
 			buildingLayer.set_cell(pos, 0, Vector2i.ZERO, 2001)
 			# Creates scene tiles now so their Structure registers before the caller looks it up.
-			buildingLayer.update_internals()
-			for ingredient in _what.ingredients:
-				inventory.RemoveItem(ingredient.item, ingredient.amount)
+			#buildingLayer.update_internals()
+			#for ingredient in _what.ingredients:
+			#	inventory.RemoveItem(ingredient.item, ingredient.amount)
+			UpdateInteranls(pos, _what)
+			return true
+		"ROAD":
+			buildingLayer.set_cell(pos, 0, Vector2i.ZERO, 2002)
+			UpdateInteranls(pos, _what)
 			return true
 		_:
 			return false
+
+func UpdateInteranls(pos: Vector2i, _what:ItemRecipe) -> void:
+	var inventory = SharedData.gameManager.inv
+	buildingLayer.update_internals()
+	for ingredient in _what.ingredients:
+		inventory.RemoveItem(ingredient.item, ingredient.amount)
 
 func RegisterStructure(s: Structure) -> void:
 	structures[s.pos] = s
@@ -306,14 +318,14 @@ func SpawnUnit(id: StringName, tile: Vector2i) -> Node2D:
 	return unit
 
 func HasSelectedUnits() -> bool:
-	var units = $UnitNode.get_children()
+	var units = unitNode.get_children()
 	for u in units:
 		if u.selected and u.selected ==true:
 			return true
 	return false
 
 func GetSelectedUnits():
-	var units = $UnitNode.get_children()
+	var units = unitNode.get_children()
 	var selected_units=[]
 	for u in units:
 		if u.selected and u.selected ==true:

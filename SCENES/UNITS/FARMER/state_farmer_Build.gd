@@ -8,9 +8,11 @@ var hammer_was_playing := false
 func enter(_previous_state_path: StringName, _data := {}) -> void:
 	var current_tile = SharedData.MAP.terrainlayer.local_to_map(SharedData.MAP.terrainlayer.to_local(actor.global_position))
 	var totem = SharedData.MAP.FindTotemAt(current_tile)
+	## if the totem is gone, then just revert to idle
 	if totem == null or totem.recipe == null:
 		finished.emit("Idle", {})
 		return
+		
 	SharedData.MAP.PlaceStructure(current_tile, totem.recipe)
 	work_tile = _FindNearestStructure()
 	totem.queue_free()
@@ -39,6 +41,9 @@ func _process(_delta: float) -> void:
 	var playing: bool = actor.mySprite.is_playing()
 	if hammer_was_playing and not playing:
 		work_tile = _FindNearestStructure()
+		if work_tile == null: 
+			finished.emit("Idle", {})
+			return
 		work_tile.increment_construction_stage()
 		SharedData.PlaySound(SharedData.soundEffects[24])
 		if work_tile.is_complete:

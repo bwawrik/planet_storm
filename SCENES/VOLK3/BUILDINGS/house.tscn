@@ -53,8 +53,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Node2D" type="Node2D" unique_id=442065893]
+[node name="Node2D" type="Node2D" unique_id=442065893 node_paths=PackedStringArray("mySprite")]
 script = ExtResource("2_kds7w")
+mySprite = NodePath("House")
 
 [node name="House" type="AnimatedSprite2D" parent="." unique_id=1275397168]
 y_sort_enabled = true

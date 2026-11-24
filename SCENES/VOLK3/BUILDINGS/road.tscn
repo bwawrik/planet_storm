@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dqywdasqaeuwx"]
+
+[ext_resource type="Script" uid="uid://d2fnhslahqf8h" path="res://SCENES/VOLK3/BUILDINGS/road.gd" id="1_yr7ms"]
+[ext_resource type="Texture2D" uid="uid://bnicvbft0svrq" path="res://IMAGES/SPRITESHEETS/road_construction.png" id="2_yr7ms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shvb2"]
+atlas = ExtResource("2_yr7ms")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18evp"]
+atlas = ExtResource("2_yr7ms")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_530b7"]
+atlas = ExtResource("2_yr7ms")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50y01"]
+atlas = ExtResource("2_yr7ms")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vifqj"]
+atlas = ExtResource("2_yr7ms")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgn5c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shvb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18evp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_530b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50y01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vifqj")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=442065893 node_paths=PackedStringArray("mySprite")]
+script = ExtResource("1_yr7ms")
+mySprite = NodePath("road")
+
+[node name="road" type="AnimatedSprite2D" parent="." unique_id=1275397168]
+y_sort_enabled = true
+position = Vector2(0, -22)
+scale = Vector2(0.455, 0.517)
+sprite_frames = SubResource("SpriteFrames_sgn5c")

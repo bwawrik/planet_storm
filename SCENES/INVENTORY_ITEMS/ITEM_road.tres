@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://c3hs6qa7kjvht"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_2nfsg"]
+[ext_resource type="Texture2D" uid="uid://bnicvbft0svrq" path="res://IMAGES/SPRITESHEETS/road_construction.png" id="2_1gwsq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gwsq"]
+atlas = ExtResource("2_1gwsq")
+region = Rect2(511.65814, 0, 128.34186, 128)
+
+[resource]
+script = ExtResource("1_2nfsg")
+name = &"ROAD"
+description = &"you walk on it"
+texture = SubResource("AtlasTexture_1gwsq")
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"

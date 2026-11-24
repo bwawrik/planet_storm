@@ -19,11 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://c4bietq41tfyj" path="res://IMAGES/BARS/circle.tscn" id="15_0aujf"]
 [ext_resource type="Script" uid="uid://0qshyo0bjxk8" path="res://SCENES/VOLK3/ui.gd" id="15_swpr0"]
 [ext_resource type="PackedScene" uid="uid://cloh5e8e7yfay" path="res://SCENES/VOLK3/BUILDINGS/house.tscn" id="16_edvfp"]
+[ext_resource type="PackedScene" uid="uid://dqywdasqaeuwx" path="res://SCENES/VOLK3/BUILDINGS/road.tscn" id="17_0bumc"]
 [ext_resource type="PackedScene" uid="uid://oiuod6h4f5xg" path="res://SCRIPTS/WindowManager/circle_menu/circle_menu_container.tscn" id="18_v80ui"]
 [ext_resource type="Texture2D" uid="uid://btm0qx2taciq1" path="res://IMAGES/SPRITESHEETS/portal_sheet.png" id="20_0emoc"]
 [ext_resource type="Script" uid="uid://dco02vmq4mgpm" path="res://SCENES/VOLK3/emit_if_pressed.gd" id="21_l5yai"]
 [ext_resource type="PackedScene" uid="uid://dxaegb1hbhim7" path="res://SCENES/WINDOWS/UnitInfoPanel.tscn" id="22_24rjf"]
 [ext_resource type="PackedScene" uid="uid://da0ka6c1mh025" path="res://SCENES/WINDOWS/score_panel.tscn" id="23_3dvbv"]
+[ext_resource type="PackedScene" uid="uid://ddxf6p6njfm6i" path="res://SCENES/WINDOWS/build_panel.tscn" id="26_ktjw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_edvfp"]
 texture = ExtResource("3_ywwq7")
@@ -302,6 +304,7 @@ sources/1100 = SubResource("TileSetAtlasSource_0bumc")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_oqcjx"]
 scenes/2000/scene = ExtResource("6_qs0cl")
 scenes/2001/scene = ExtResource("16_edvfp")
+scenes/2002/scene = ExtResource("17_0bumc")
 
 [sub_resource type="TileSet" id="TileSet_0ebmn"]
 tile_shape = 1
@@ -318,13 +321,14 @@ region = Rect2(1160, -5.5, 111, 129)
 y_sort_enabled = true
 script = ExtResource("1_02l3m")
 
-[node name="MAP" type="Node2D" parent="." unique_id=1579809073 node_paths=PackedStringArray("terrainlayer", "objectlayer", "buildingLayer", "unitNode", "effectNode")]
+[node name="MAP" type="Node2D" parent="." unique_id=1579809073 node_paths=PackedStringArray("terrainlayer", "objectlayer", "buildingLayer", "unitNode", "mobNode", "effectNode")]
 y_sort_enabled = true
 script = ExtResource("2_4a5wk")
 terrainlayer = NodePath("terrainLayer")
 objectlayer = NodePath("objectLayer")
 buildingLayer = NodePath("buildingLayer")
 unitNode = NodePath("UnitNode")
+mobNode = NodePath("MobNode")
 effectNode = NodePath("EffectNode")
 
 [node name="terrainLayer" type="TileMapLayer" parent="MAP" unique_id=246877699]
@@ -349,13 +353,20 @@ tile_set = SubResource("TileSet_0ebmn")
 z_index = 10
 y_sort_enabled = true
 
+[node name="MobNode" type="Node2D" parent="MAP" unique_id=482110978]
+z_index = 10
+y_sort_enabled = true
+
 [node name="EffectNode" type="Node2D" parent="MAP" unique_id=1063722436]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1532358784]
 script = ExtResource("7_s13g6")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1925957860]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1925957860 node_paths=PackedStringArray("unit_activity_panel", "score_panel", "build_panel")]
 script = ExtResource("15_swpr0")
+unit_activity_panel = NodePath("UnitActivityPanel")
+score_panel = NodePath("ScorePanel")
+build_panel = NodePath("BuildPanel")
 
 [node name="Circle" parent="UI" unique_id=961617986 instance=ExtResource("15_0aujf")]
 
@@ -389,11 +400,11 @@ size_flags_vertical = 0
 [node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/HomingButton" unique_id=1241161794]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 0
-offset_left = -60.0
+offset_left = -120.0
 offset_top = 17.0
-offset_right = 51.0
-offset_bottom = 146.0
-scale = Vector2(0.4, 0.4)
+offset_right = 80.0
+offset_bottom = 217.0
+scale = Vector2(0.4, 0.445)
 tooltip_text = "FOCUS ON PORTAL"
 texture = SubResource("AtlasTexture_sgn5c")
 script = ExtResource("21_l5yai")
@@ -414,17 +425,23 @@ grow_vertical = 0
 ButtonGroupName = "UnitActivityPanel"
 
 [node name="ScorePanel" parent="UI" unique_id=1009259241 instance=ExtResource("23_3dvbv")]
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 90.0
-offset_top = 175.0
-offset_right = 90.0
-offset_bottom = 175.0
-grow_horizontal = 1
-grow_vertical = 1
-metadata/_edit_use_anchors_ = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = -123.0
+offset_bottom = 123.0
+grow_horizontal = 0
+
+[node name="BuildPanel" parent="UI" unique_id=994932123 instance=ExtResource("26_ktjw5")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -78.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [connection signal="gui_input" from="UI/MarginContainer/HomingButton/TextureRect" to="UI/MarginContainer/HomingButton/TextureRect" method="_on_gui_input"]

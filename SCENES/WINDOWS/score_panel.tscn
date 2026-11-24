@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://bfv7nxnx0cg58" path="res://FONTS/SaucerBB.ttf" id="2_iy02i"]
 [ext_resource type="Texture2D" uid="uid://ct5ox53gt6nyj" path="res://IMAGES/SPRITESHEETS/panelss.png" id="2_y1p65"]
 [ext_resource type="Texture2D" uid="uid://dm48b7tntjeso" path="res://IMAGES/INVENTORY_ITEMS/wood.png" id="4_y1p65"]
-[ext_resource type="Texture2D" uid="uid://b3hcplpxlulsy" path="res://IMAGES/INVENTORY_ITEMS/PUDDLE.png" id="5_ocrqg"]
 [ext_resource type="Texture2D" uid="uid://b6fjf2ypgwk3y" path="res://IMAGES/INVENTORY_ITEMS/food.png" id="6_1c55w"]
+[ext_resource type="Texture2D" uid="uid://cc0keoa3itehu" path="res://IMAGES/INVENTORY_ITEMS/ROCK.png" id="6_ah4f8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgn5c"]
 atlas = ExtResource("2_y1p65")
@@ -64,26 +64,6 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_constants/separation = 42
 
-[node name="gold" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1940045796]
-layout_mode = 2
-
-[node name="people_icon" type="TextureRect" parent="MarginContainer/VBoxContainer/gold" unique_id=1417633801]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_ah4f8")
-expand_mode = 2
-
-[node name="n_gold" type="RichTextLabel" parent="MarginContainer/VBoxContainer/gold" unique_id=780060652]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 13.5
-offset_right = 180.0
-offset_bottom = 29.5
-theme_override_colors/default_color = Color(0.15324715, 0.6722187, 0.44928586, 1)
-theme_override_fonts/normal_font = ExtResource("2_iy02i")
-text = "0"
-
 [node name="wood" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1501290536]
 layout_mode = 2
 
@@ -104,17 +84,37 @@ theme_override_colors/default_color = Color(0.15324715, 0.6722187, 0.44928586, 1
 theme_override_fonts/normal_font = ExtResource("2_iy02i")
 text = "0"
 
-[node name="water" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1957436971]
+[node name="gold" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1940045796]
 layout_mode = 2
 
-[node name="people_icon" type="TextureRect" parent="MarginContainer/VBoxContainer/water" unique_id=595296829]
+[node name="people_icon" type="TextureRect" parent="MarginContainer/VBoxContainer/gold" unique_id=1417633801]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("5_ocrqg")
+texture = ExtResource("2_ah4f8")
 expand_mode = 2
 
-[node name="n_water" type="RichTextLabel" parent="MarginContainer/VBoxContainer/water" unique_id=1378279082]
+[node name="n_gold" type="RichTextLabel" parent="MarginContainer/VBoxContainer/gold" unique_id=780060652]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 13.5
+offset_right = 180.0
+offset_bottom = 29.5
+theme_override_colors/default_color = Color(0.15324715, 0.6722187, 0.44928586, 1)
+theme_override_fonts/normal_font = ExtResource("2_iy02i")
+text = "0"
+
+[node name="rock" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1957436971]
+layout_mode = 2
+
+[node name="people_icon" type="TextureRect" parent="MarginContainer/VBoxContainer/rock" unique_id=595296829]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_ah4f8")
+expand_mode = 2
+
+[node name="n_rock" type="RichTextLabel" parent="MarginContainer/VBoxContainer/rock" unique_id=1378279082]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 13.5
