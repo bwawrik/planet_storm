@@ -14,6 +14,7 @@ var _right_press_position := Vector2.ZERO
 var _right_last_tile := Vector2i.ZERO
 var _selection_box_started := false
 var _placing_totems := false
+var _totem_hold_pending := false
 var _has_last_totem_tile := false
 var _last_totem_tile := Vector2i.ZERO
 var _start := Vector2.ZERO
@@ -23,6 +24,7 @@ var _box: Control
 func _ready() -> void:
 	SharedData.UINode = self
 	SignalBus.CircleMenuVisible.connect(_on_circle_menu_visibility_changed)
+	SignalBus.CircleMenuLeftMouse.connect(_on_circle_menu_left_mouse)
 	_box = Control.new()
 	_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_box.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -43,19 +45,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed:
 			_dragging = true
 			_selection_box_started = false
-			_placing_totems = build_panel.recipe != null and not SharedData.MAP.HasSelectedUnits()
+			_totem_hold_pending = build_panel.recipe != null and not SharedData.MAP.HasSelectedUnits()
+			_placing_totems = false
 			_has_last_totem_tile = false
 			_start = event.position
 			_end = event.position
-			if _placing_totems:
-				_place_totem_at(event.position)
 		elif _dragging:
+			var hold_was_pending := _totem_hold_pending
+			_totem_hold_pending = false
 			if _placing_totems:
 				_place_totem_at(event.position)
 			_dragging = false
 			_end = event.position
 			_box.queue_redraw()
-			if not _placing_totems:
+			if not _placing_totems and (not hold_was_pending or event.position.distance_to(_start) > 5.0):
 				_emit_area()
 			_placing_totems = false
 	elif event is InputEventMouseMotion:
@@ -110,6 +113,14 @@ func _place_totem_at(viewport_pos: Vector2) -> void:
 	_last_totem_tile = tile
 	_has_last_totem_tile = true
 	SignalBus.CircleMenuLeftMouse.emit(false, viewport_pos)
+
+func _on_circle_menu_left_mouse(hold_completed: bool, viewport_pos: Vector2) -> void:
+	if not hold_completed or not _totem_hold_pending or not _dragging:
+		return
+	_totem_hold_pending = false
+	_placing_totems = true
+	_last_totem_tile = _tile_at(viewport_pos)
+	_has_last_totem_tile = true
 
 func _update_right_mouse_drag(viewport_pos: Vector2) -> void:
 	if _circle_menu_visible:

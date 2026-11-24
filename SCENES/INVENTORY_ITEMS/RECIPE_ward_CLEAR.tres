@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://3ghgvywpheau"]
+
+[ext_resource type="Script" uid="uid://dxrwk861cfcrl" path="res://SCRIPTS/inventory_system/inventory_slot.gd" id="1_a3kpj"]
+[ext_resource type="Resource" uid="uid://dyca0e4kqposc" path="res://SCENES/INVENTORY_ITEMS/ward_build_CLEAR.tres" id="2_ujfoq"]
+[ext_resource type="Script" uid="uid://c1pst88f4uaec" path="res://SCRIPTS/inventory_system/recipe_resource.gd" id="4_1uhms"]
+
+[resource]
+script = ExtResource("4_1uhms")
+name = &"CLEAR"
+item = ExtResource("2_ujfoq")
+metadata/_custom_type_script = "uid://c1pst88f4uaec"

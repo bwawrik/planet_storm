@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://dyca0e4kqposc"]
+
+[ext_resource type="Script" uid="uid://cvwm0symgb1qo" path="res://SCRIPTS/inventory_system/item_resource.gd" id="1_v8tit"]
+[ext_resource type="Texture2D" uid="uid://ysjhhft0p7id" path="res://IMAGES/KENNYS_PARTICLES/cancel.png" id="2_v8tit"]
+
+[resource]
+script = ExtResource("1_v8tit")
+name = &"CLEAR"
+description = &"CLEAR"
+texture = ExtResource("2_v8tit")
+type = 4
+metadata/_custom_type_script = "uid://cvwm0symgb1qo"
