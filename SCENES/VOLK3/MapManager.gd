@@ -338,19 +338,18 @@ func FindNearestTotem(pos: Vector2i) -> Variant:
 	var nearest_distance = INF
 	for e in effects:
 		if e is Totem:
-			var e_tile := terrainlayer.local_to_map(terrainlayer.to_local(e.global_position))
+			var e_tile: Vector2i = e.tile_position
 			var dist := (e_tile - pos).length_squared()
 			if dist < nearest_distance:
 				nearest_distance = dist
 				nearest = e_tile
 	return nearest
 
-func FindTotemAt(pos: Vector2i) -> Variant:
+func FindTotemAt(pos: Vector2i) -> Totem:
 	var effects = effectNode.get_children()
 	for e in effects:
 		if e is Totem:
-			var e_tile := terrainlayer.local_to_map(terrainlayer.to_local(e.global_position))
-			if e_tile==pos: return e
+			if e.tile_position == pos: return e
 	return null
 	
 #endregion unit_management

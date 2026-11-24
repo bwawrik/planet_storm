@@ -86,10 +86,13 @@ func PlaceTotemSelected(menu_visible: bool, viewport_pos: Vector2):
 	var tile := terrain.local_to_map(terrain.get_global_transform_with_canvas().affine_inverse() * viewport_pos)
 	if not SharedData.MAP.IsWalkable(tile):
 		return
-	var vs = SharedData.effects[1].instantiate()
+	if SharedData.MAP.FindTotemAt(tile) != null:
+		return
+	var vs := SharedData.effects[1].instantiate() as Totem
 	var effect_node: Node2D = SharedData.MAP.effectNode
 	var snapped_viewport_position := terrain.get_global_transform_with_canvas() * terrain.map_to_local(tile)
 	var totem_position := effect_node.get_global_transform_with_canvas().affine_inverse() * snapped_viewport_position
+	vs.tile_position = tile
 	effect_node.add_child(vs)
 	vs.displayTotem(totem_position, SharedData.UINode.build_panel.recipe)
 	

@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://c1vlyyidorc3r" path="res://SCENES/INVENTORY_ITEMS/RECIPE_ward_TOWER.tres" id="5_22q1n"]
 
 [node name="CircleMenuContainer" type="Control" unique_id=1468969673]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
