@@ -8,6 +8,12 @@ extends Node2D
 @export var mobNode : Node2D
 @export var effectNode: Node2D
 
+var levelConfiguration: Dictionary = { 
+		"size": 100,
+		"time_till_next_wave": 60,
+	}
+var timeTillNextWave: float = 60
+
 var unitById: Dictionary = {}
 
 const CARDINAL_OFFSETS: Array[Vector2i] = [
@@ -38,7 +44,7 @@ const TERRAIN_PASSABLE := {
 	TerrainObjects.OAKTREE: true,
 	TerrainObjects.PALMTREE: true,
 	BuildingObjects.SPAWNPORTAL: true,
-	BuildingObjects.HOUSE: true,
+	BuildingObjects.HOUSE: false,
 	
 }
 
@@ -59,7 +65,7 @@ var structures: Dictionary = {} # Vector2i -> Structure
 func _ready() -> void:
 	SharedData.MAP = self
 	myAstar = AStar2D.new()
-	InitMap(60)
+	InitMap(levelConfiguration["size"])
 	## make a dictionary of units so i can spawn them by name
 	for u in SharedData.units: unitById[u.id] = u
 

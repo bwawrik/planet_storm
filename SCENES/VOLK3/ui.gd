@@ -4,14 +4,14 @@ extends CanvasLayer
 @export var score_panel: Control 
 @export var build_panel: BuildPanel
 
-const MIN_DRAG_SIZE := 40.0
+const MIN_DRAG_SIZE := 50.0
 
 var _dragging := false
 var _right_mouse_down := false
 var _right_dragging := false
 var _circle_menu_visible := false
 var _right_press_position := Vector2.ZERO
-var _right_last_tile := Vector2i.ZERO
+#var _right_last_tile := Vector2i.ZERO
 var _selection_box_started := false
 var _placing_totems := false
 var _clearing_totems := false
